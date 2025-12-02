@@ -38,12 +38,12 @@
           <h1>Welcome to the <span>Frontend Quiz!</span></h1>
           <p class="subtext">Pick a subject to get started.</p>
         </div>
-        <div id="questions">
+        <div id="questions" class="hidden">
           <p class="subtext">Question NUMBER of 10</p>
           <p id="question">What does 'WCAG' stand for?</p>
           <div>PROGRESS BAR</div>
         </div>
-        <div id="result">
+        <div id="result" class="hidden">
           <p>Quiz completed <span>You scored...</span></p>
         </div>
       </section>
@@ -94,30 +94,45 @@
             </div>
           </div>
         </div>
-        <div id="answers"></div>
+        <div id="answers">
+          <div class="option">
+            <div class="option-letter">
+              <p>A</p>
+            </div>
+          </div>
+          <div class="option"></div>
+          <div class="option"></div>
+          <div class="option"></div>
+          <button class="submit">Submit answer</button>
+          <div class="error-msg">
+            <img src="./assets/images/icon-error.svg" alt="" />
+            <p>Please select an answer</p>
+          </div>
+        </div>
       </section>
     </main>
+
     <!-- Quiz menu start -->
 
-    Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
-    JavaScript Accessibility
+    <!-- Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
+    JavaScript Accessibility -->
 
     <!-- Quiz menu end -->
 
     <!-- Quiz question start -->
 
-    Question
+    <!-- Question -->
     <!-- number -->
-    of 10 A B C D Submit answer
+    <!-- of 10 A B C D Submit answer -->
 
     <!-- Quiz question end -->
 
     <!-- Quiz completed start -->
 
-    Quiz completed You scored...
+    <!-- Quiz completed You scored... -->
 
     <!-- score -->
-    out of 10
+    <!-- out of 10 -->
 
     <!-- Quiz completed end -->
   </body>
