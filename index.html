@@ -33,55 +33,68 @@
     </header>
 
     <main class="wrapper">
-      <section class="welcome-container">
-        <h1>Welcome to the <span>Frontend Quiz!</span></h1>
-        <p class="subtext">Pick a subject to get started.</p>
+      <section class="text-container">
+        <div id="welcome">
+          <h1>Welcome to the <span>Frontend Quiz!</span></h1>
+          <p class="subtext">Pick a subject to get started.</p>
+        </div>
+        <div id="questions">
+          <p class="subtext">Question NUMBER of 10</p>
+          <p id="question">What does 'WCAG' stand for?</p>
+          <div>PROGRESS BAR</div>
+        </div>
+        <div id="result">
+          <p>Quiz completed <span>You scored...</span></p>
+        </div>
       </section>
-      <section class="quiz-container">
-        <div class="option">
-          <div>
-            <img
-              id="icon"
-              class="option-icon"
-              src="./assets/images/icon-html.svg"
-              alt=""
-            />
-            <p id="option-text" class="option-text">HTML</p>
+      <section class="options-container">
+        <div id="subjects">
+          <div class="option">
+            <div>
+              <img
+                id="icon"
+                class="option-icon"
+                src="./assets/images/icon-html.svg"
+                alt=""
+              />
+              <p id="option-text" class="option-text">HTML</p>
+            </div>
+          </div>
+          <div class="option">
+            <div>
+              <img
+                id="icon"
+                class="option-icon"
+                src="./assets/images/icon-css.svg"
+                alt=""
+              />
+              <p id="option-text" class="option-text">CSS</p>
+            </div>
+          </div>
+          <div class="option">
+            <div>
+              <img
+                id="icon"
+                class="option-icon"
+                src="./assets/images/icon-js.svg"
+                alt=""
+              />
+              <p id="option-text" class="option-text">Javascript</p>
+            </div>
+          </div>
+          <div class="option">
+            <div>
+              <img
+                id="icon"
+                class="option-icon"
+                src="./assets/images/icon-accessibility.svg"
+                alt=""
+              />
+              <p id="option-text" class="option-text">Accessibility</p>
+            </div>
           </div>
         </div>
-        <div class="option">
-          <div>
-            <img
-              id="icon"
-              class="option-icon"
-              src="./assets/images/icon-css.svg"
-              alt=""
-            />
-            <p id="option-text" class="option-text">CSS</p>
-          </div>
-        </div>
-        <div class="option">
-          <div>
-            <img
-              id="icon"
-              class="option-icon"
-              src="./assets/images/icon-js.svg"
-              alt=""
-            />
-            <p id="option-text" class="option-text">Javascript</p>
-          </div>
-        </div>
-        <div class="option">
-          <div>
-            <img
-              id="icon"
-              class="option-icon"
-              src="./assets/images/icon-accessibility.svg"
-              alt=""
-            />
-            <p id="option-text" class="option-text">Accessibility</p>
-          </div>
-        </div>
+        <div id="answers"></div>
       </section>
     </main>
     <!-- Quiz menu start -->
