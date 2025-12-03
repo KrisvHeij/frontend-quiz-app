@@ -21,125 +21,135 @@
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
   <body>
-    <header class="wrapper header">
-      <div>
-        <img
-          class="subject-icon"
-          src="./assets/images/icon-accessibility.svg"
-          alt=""
-        />
-        <h2 id="subject">Accessibility</h2>
-      </div>
-      <div id="toggle-mode">
-        <input type="checkbox" name="toggle-switch" id="toggle-switch" />
-        <label for="toggle-switch" class="toggle-label">
-          <span class="toggle-ball"></span>
-        </label>
-      </div>
-    </header>
-
-    <main class="wrapper">
-      <section class="text-container">
-        <div id="welcome">
-          <h1>Welcome to the <span>Frontend Quiz!</span></h1>
-          <p class="subtext">Pick a subject to get started.</p>
+    <div class="background-img">
+      <header class="wrapper header">
+        <div class="hidden">
+          <img
+            class="subject-icon"
+            src="./assets/images/icon-accessibility.svg"
+            alt=""
+          />
+          <h2 id="subject">Accessibility</h2>
         </div>
-        <div id="questions" class="hidden">
-          <p class="subtext">Question NUMBER of 10</p>
-          <p id="question">What does 'WCAG' stand for?</p>
-          <div>PROGRESS BAR</div>
-        </div>
-        <div id="result" class="hidden">
-          <p>Quiz completed <span>You scored...</span></p>
-        </div>
-      </section>
-      <section class="options-container">
-        <div id="subjects">
-          <div class="option">
-            <div>
-              <img
-                id="icon"
-                class="option-icon"
-                src="./assets/images/icon-html.svg"
-                alt=""
-              />
-              <p id="option-text" class="option-text">HTML</p>
-            </div>
+        <div id="toggle-mode">
+          <div>
+            <img src="./assets/images/icon-sun-dark.svg" alt="" />
           </div>
-          <div class="option">
-            <div>
-              <img
-                id="icon"
-                class="option-icon"
-                src="./assets/images/icon-css.svg"
-                alt=""
-              />
-              <p id="option-text" class="option-text">CSS</p>
-            </div>
+          <div>
+            <input type="checkbox" name="toggle-switch" id="toggle-switch" />
+            <label for="toggle-switch" class="toggle-label">
+              <span class="toggle-ball"></span>
+            </label>
           </div>
-          <div class="option">
-            <div>
-              <img
-                id="icon"
-                class="option-icon"
-                src="./assets/images/icon-js.svg"
-                alt=""
-              />
-              <p id="option-text" class="option-text">Javascript</p>
-            </div>
-          </div>
-          <div class="option">
-            <div>
-              <img
-                id="icon"
-                class="option-icon"
-                src="./assets/images/icon-accessibility.svg"
-                alt=""
-              />
-              <p id="option-text" class="option-text">Accessibility</p>
-            </div>
+          <div>
+            <img src="./assets/images/icon-moon-dark.svg" alt="" />
           </div>
         </div>
-        <div id="answers">
-          <div class="option">
-            <div class="option-letter">
-              <p>A</p>
+      </header>
+
+      <main class="wrapper">
+        <section class="text-container">
+          <div id="welcome">
+            <h1>Welcome to the <span>Frontend Quiz!</span></h1>
+            <p class="subtext">Pick a subject to get started.</p>
+          </div>
+          <div id="questions" class="hidden">
+            <p class="subtext">Question NUMBER of 10</p>
+            <p id="question">What does 'WCAG' stand for?</p>
+            <div>PROGRESS BAR</div>
+          </div>
+          <div id="result" class="hidden">
+            <p>Quiz completed <span>You scored...</span></p>
+          </div>
+        </section>
+        <section class="options-container">
+          <div id="subjects">
+            <div class="option">
+              <div>
+                <img
+                  id="icon"
+                  class="option-icon"
+                  src="./assets/images/icon-html.svg"
+                  alt=""
+                />
+                <p id="option-text" class="option-text">HTML</p>
+              </div>
+            </div>
+            <div class="option">
+              <div>
+                <img
+                  id="icon"
+                  class="option-icon"
+                  src="./assets/images/icon-css.svg"
+                  alt=""
+                />
+                <p id="option-text" class="option-text">CSS</p>
+              </div>
+            </div>
+            <div class="option">
+              <div>
+                <img
+                  id="icon"
+                  class="option-icon"
+                  src="./assets/images/icon-js.svg"
+                  alt=""
+                />
+                <p id="option-text" class="option-text">Javascript</p>
+              </div>
+            </div>
+            <div class="option">
+              <div>
+                <img
+                  id="icon"
+                  class="option-icon"
+                  src="./assets/images/icon-accessibility.svg"
+                  alt=""
+                />
+                <p id="option-text" class="option-text">Accessibility</p>
+              </div>
             </div>
           </div>
-          <div class="option"></div>
-          <div class="option"></div>
-          <div class="option"></div>
-          <button class="submit">Submit answer</button>
-          <div class="error-msg">
-            <img src="./assets/images/icon-error.svg" alt="" />
-            <p>Please select an answer</p>
+          <div id="answers">
+            <div class="option">
+              <div class="option-letter">
+                <p>A</p>
+              </div>
+            </div>
+            <div class="option"></div>
+            <div class="option"></div>
+            <div class="option"></div>
+            <button class="submit">Submit answer</button>
+            <div class="error-msg">
+              <img src="./assets/images/icon-error.svg" alt="" />
+              <p>Please select an answer</p>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
 
-    <!-- Quiz menu start -->
+      <!-- Quiz menu start -->
 
-    <!-- Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
-    JavaScript Accessibility -->
+      <!-- Welcome to the Frontend Quiz! Pick a subject to get started. HTML CSS
+      JavaScript Accessibility -->
 
-    <!-- Quiz menu end -->
+      <!-- Quiz menu end -->
 
-    <!-- Quiz question start -->
+      <!-- Quiz question start -->
 
-    <!-- Question -->
-    <!-- number -->
-    <!-- of 10 A B C D Submit answer -->
+      <!-- Question -->
+      <!-- number -->
+      <!-- of 10 A B C D Submit answer -->
 
-    <!-- Quiz question end -->
+      <!-- Quiz question end -->
 
-    <!-- Quiz completed start -->
+      <!-- Quiz completed start -->
 
-    <!-- Quiz completed You scored... -->
+      <!-- Quiz completed You scored... -->
 
-    <!-- score -->
-    <!-- out of 10 -->
+      <!-- score -->
+      <!-- out of 10 -->
 
-    <!-- Quiz completed end -->
+      <!-- Quiz completed end -->
+    </div>
   </body>
 </html>
