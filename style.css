@@ -20,6 +20,15 @@
   }
 }
 
+/* Later clamp toevoegen voor font-size */
+@layer font-styles {
+  :root {
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+  }
+}
+
 @layer spacing {
   :root {
     --spacing-100: 0.5rem;
@@ -33,6 +42,52 @@
     --spacing-1800: 9rem;
     --spacing-2300: 11.5rem;
   }
+}
+
+/* Text Presets */
+.text-preset-1-medium {
+  /* font-size: 9rem/5.5rem; */
+  font-size: clamp(5.5rem, 2.1603rem + 14.2494vw, 9rem);
+  font-weight: var(--fw-medium);
+  font-style: normal;
+}
+.text-preset-2-medium {
+  /* font-size: 4rem/2.5rem; */
+  font-size: clamp(2.5rem, 1.0687rem + 6.1069vw, 4rem);
+  font-weight: var(--fw-medium);
+  font-style: normal;
+}
+.text-preset-2-light {
+  /* font-size: 4rem/2.5rem; */
+  font-size: clamp(2.5rem, 1.0687rem + 6.1069vw, 4rem);
+  font-weight: var(--fw-light);
+  font-style: normal;
+}
+.text-preset-3-medium {
+  /* font-size: 2.25rem/1.25rem; */
+  font-size: clamp(1.25rem, 0.2958rem + 4.0712vw, 2.25rem);
+  font-weight: var(--fw-medium);
+  font-style: normal;
+  line-height: 1.2;
+}
+.text-preset-4-medium {
+  /* font-size: 1.75rem/1.125rem; */
+  font-size: clamp(1.125rem, 0.5286rem + 2.5445vw, 1.75rem);
+  font-weight: var(--fw-medium);
+  font-style: normal;
+}
+.text-preset-5-regular {
+  font-size: 1.5rem;
+  font-weight: var(--fw-regular);
+  font-style: normal;
+  line-height: 1.5;
+}
+.text-preset-6-italic {
+  /* font-size: 1.25rem/0.875rem; */
+  font-size: clamp(1.25rem, 1.6078rem + -1.5267vw, 0.875rem);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .hidden {
