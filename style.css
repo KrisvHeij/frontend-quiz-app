@@ -120,4 +120,50 @@ body {
   background-image: url(./assets/images/pattern-background-mobile-light.svg);
 }
 
-/* Verder gaan met Header */
+/* Header */
+.header {
+  padding-block: var(--spacing-200);
+  padding-inline: var(--spacing-300);
+  display: flex;
+}
+
+.toggle-mode-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  margin-inline-start: auto;
+}
+
+.toggle-mode-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.toggle-label {
+  display: block;
+  width: 2rem;
+  height: 1.25rem;
+  background-color: var(--c-purple-600);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.toggle-ball {
+  width: 0.75rem;
+  height: 0.75rem;
+  position:absolute;
+  border-radius: 50%;
+  top: 0.25rem;
+  left: 0.25rem;
+  background-color: var(--c-white);
+  transition: transform 250ms;
+}
+
+#toggle-switch {
+  display: none;
+}
+
+#toggle-switch:checked + .toggle-label .toggle-ball {
+  transform: translateX(0.75rem);
+}
