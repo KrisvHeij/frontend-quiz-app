@@ -99,7 +99,7 @@
 }
 .text-preset-6-italic {
   /* font-size: 1.25rem/0.875rem; */
-  font-size: clamp(1.25rem, 1.6078rem + -1.5267vw, 0.875rem);
+  font-size: clamp(0.875rem, 0.5172rem + 1.5267vw, 1.25rem);
   font-weight: var(--fw-regular);
   font-style: italic;
   line-height: 1.5;
@@ -178,6 +178,10 @@ body {
 main.wrapper {
   padding-inline: var(--spacing-300);
   padding-block-start: var(--spacing-400);
+}
+
+.text-container {
+  margin-block-end: var(--spacing-500);
 }
 
 .text-container h1 {
