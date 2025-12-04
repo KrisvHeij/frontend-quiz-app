@@ -174,7 +174,7 @@ body {
   transform: translateX(0.75rem);
 }
 
-/* Main section */
+/* Main section text-container */
 main.wrapper {
   padding-inline: var(--spacing-300);
   padding-block-start: var(--spacing-400);
@@ -191,3 +191,31 @@ main.wrapper {
 .subtext {
   color: var(--c-grey-500);
 }
+
+/* Main section options container */
+.subjects-container {
+  display: grid;
+  gap: var(--spacing-100);
+}
+
+.option {
+  padding: var(--spacing-200);
+  background-color: var(--c-white);
+  border-radius: 0.75rem;
+}
+
+.option > div {
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+.option-icon {
+  border-radius: 0.375rem;
+}
+
+.option-icon-1 {
+  background-color: var(--c-orange-50);
+}
+
+/* Verder gaan met options */
