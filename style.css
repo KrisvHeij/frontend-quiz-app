@@ -9,6 +9,7 @@
 
   img {
     max-width: 100%;
+    display: block;
   }
 }
 
@@ -137,6 +138,11 @@ body {
 .toggle-mode-icon {
   width: 1rem;
   height: 1rem;
+
+  /* @media (min-width: 450px) {
+    width: 1.5rem;
+    height: 1.5rem;
+  } */
 }
 
 .toggle-label {
