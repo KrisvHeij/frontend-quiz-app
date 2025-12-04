@@ -173,3 +173,17 @@ body {
 #toggle-switch:checked + .toggle-label .toggle-ball {
   transform: translateX(0.75rem);
 }
+
+/* Main section */
+main.wrapper {
+  padding-inline: var(--spacing-300);
+  padding-block-start: var(--spacing-400);
+}
+
+.text-container h1 {
+  color: var(--c-blue-900);
+}
+
+.subtext {
+  color: var(--c-grey-500);
+}
