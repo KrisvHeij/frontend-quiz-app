@@ -197,7 +197,7 @@ main.wrapper {
 /* Main section options container */
 .subjects-container {
   display: grid;
-  gap: var(--spacing-100);
+  gap: var(--spacing-200);
 }
 
 .option {
@@ -205,6 +205,7 @@ main.wrapper {
   background-color: var(--c-white);
   border-radius: 0.75rem;
   cursor: pointer;
+  box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%,0.1);
 }
 
 .option > div {
