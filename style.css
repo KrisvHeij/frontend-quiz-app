@@ -186,6 +186,7 @@ main.wrapper {
 }
 
 .text-container h1 {
+  margin-block-end: var(--spacing-200);
   color: var(--c-blue-900);
 }
 
@@ -203,6 +204,7 @@ main.wrapper {
   padding: var(--spacing-200);
   background-color: var(--c-white);
   border-radius: 0.75rem;
+  cursor: pointer;
 }
 
 .option > div {
