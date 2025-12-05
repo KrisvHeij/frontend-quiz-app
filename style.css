@@ -110,17 +110,24 @@
   display: none;
 }
 
+/* Main styles */
 body {
   font-family: "Rubik", sans-serif;
   background-color: var(--c-grey-50);
   height: 100vh;
+  background-image: url(./assets/images/pattern-background-mobile-light.svg);
 }
 
-.background-img {
+/* .background-img {
   width: 100%;
   height: 100%;
   background-image: url(./assets/images/pattern-background-mobile-light.svg);
-}
+
+  @media (min-width: 48rem) {
+    width: 50%;
+    height: auto;
+  }
+} */
 
 /* Header */
 .header {
