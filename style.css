@@ -25,10 +25,11 @@
     --c-blue-500: hsl(223 100% 59%);
     --c-blue-300: hsl(216 47% 78%);
     --c-blue-100: hsl(220 50% 95%);
+    --c-blue-50: hsl(225 100% 96%);
     --c-green-500: hsl(151 68% 52%);
     --c-green-100: hsl(151 88% 94%);
     --c-purple-600: hsl(277 91% 56%);
-    --c-purple-100: hsl(246 1005 95%);
+    --c-purple-100: hsl(246 100% 95%);
     --c-orange-400: hsl(22 100% 60%);
     --c-orange-50: hsl(27 100% 96%);
     --c-red-500: hsl(0 82% 63%);
@@ -211,6 +212,9 @@ main.wrapper {
 }
 
 .option-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0.375rem;
   border-radius: 0.375rem;
 }
 
@@ -218,4 +222,14 @@ main.wrapper {
   background-color: var(--c-orange-50);
 }
 
-/* Verder gaan met options */
+.option-icon-2 {
+  background-color: var(--c-green-100);
+}
+
+.option-icon-3 {
+  background-color: var(--c-blue-50);
+}
+
+.option-icon-4 {
+  background-color: var(--c-purple-100);
+}
