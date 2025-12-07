@@ -125,7 +125,7 @@ body {
   @media (min-width: 62rem) {
     background-image: url("./assets/images/pattern-background-desktop-light.svg");
     background-size: cover;
-    padding-block-start: var(--spacing-400);
+    padding-block-start: var(--spacing-600);
     padding-inline: var(--spacing-400);
   }
 }
@@ -140,6 +140,10 @@ body {
     max-width: 44rem;
     margin-inline: auto;
     padding-block-start: var(--spacing-600);
+  }
+
+  @media (min-width: 62rem) {
+    padding-block-end: var(--spacing-400);
   }
 }
 
@@ -229,8 +233,9 @@ main.wrapper {
   }
 
   @media (min-width: 62rem) {
-    display: flex;
-    padding-block-start: var(--spacing-1600);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-block-start: var(--spacing-800);
     padding-inline: 0;
   }
 }
@@ -243,7 +248,7 @@ main.wrapper {
   }
 
   @media (min-width: 62rem) {
-    flex: 1;
+    /* padding-inline-end: var(--spacing-1600); */
   }
 }
 
@@ -272,7 +277,7 @@ main.wrapper {
   }
 
   @media (min-width: 62rem) {
-    flex: 1;
+    max-width: 100%;
   }
 }
 .subjects-container {
@@ -293,6 +298,10 @@ main.wrapper {
 
   @media (min-width: 48rem) {
     border-radius: 1.5rem;
+  }
+
+  @media (min-width: 62rem) {
+    padding: var(--spacing-300);
   }
 }
 
@@ -330,3 +339,5 @@ main.wrapper {
 .option-icon-4 {
   background-color: var(--c-purple-100);
 }
+
+/* Verder gaan met Start menu Dark */
