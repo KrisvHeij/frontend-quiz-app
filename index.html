@@ -22,13 +22,13 @@
   </head>
   <body>
     <header class="wrapper header">
-      <div class="hidden">
+      <div class="header-subject">
         <img
-          class="subject-icon"
+          class="option-icon option-icon-4"
           src="./assets/images/icon-accessibility.svg"
           alt=""
         />
-        <h2 id="subject">Accessibility</h2>
+        <h1 class="text-preset-4-medium">Accessibility</h1>
       </div>
       <div id="toggle-mode" class="toggle-mode-container">
         <img
@@ -52,7 +52,7 @@
 
     <main class="wrapper">
       <section class="text-container">
-        <div id="welcome">
+        <!-- <div id="welcome hidden">
           <h1 class="text-preset-2-light">
             Welcome to the
             <span class="text-preset-2-medium">Frontend Quiz!</span>
@@ -60,15 +60,22 @@
           <p class="subtext text-preset-6-italic">
             Pick a subject to get started.
           </p>
-        </div>
-        <!-- <div id="questions" class="hidden">
-            <p class="subtext">Question NUMBER of 10</p>
-            <p id="question">What does 'WCAG' stand for?</p>
-            <div>PROGRESS BAR</div>
+        </div> -->
+        <div class="question-container">
+          <p class="subtext text-preset-6-italic">
+            Question <span>NUMBER</span> of 10
+          </p>
+          <p class="text-preset-3-medium">
+            Which of these color contrast ratios defines the minimum WCAG 2.1
+            Level AA requirement for normal text?
+          </p>
+          <div class="progress-bar">
+            <div class="progress-inner"></div>
           </div>
-          <div id="result" class="hidden">
-            <p>Quiz completed <span>You scored...</span></p>
-          </div> -->
+        </div>
+        <div id="result" class="hidden">
+          <p>Quiz completed <span>You scored...</span></p>
+        </div>
       </section>
       <section class="options-container">
         <div id="subjects" class="subjects-container">

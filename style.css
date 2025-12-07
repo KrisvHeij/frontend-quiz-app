@@ -125,7 +125,7 @@ body {
   @media (min-width: 62rem) {
     background-image: url("./assets/images/pattern-background-desktop-light.svg");
     background-size: cover;
-    padding-block-start: var(--spacing-600);
+    /* padding-block-start: var(--spacing-600); */
     padding-inline: var(--spacing-400);
   }
 }
@@ -154,6 +154,14 @@ header.wrapper {
   }
 }
 
+/* Qustion subject */
+.header-subject {
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+/* Toggle Light/Dark section */
 .toggle-mode-container {
   display: flex;
   align-items: center;
@@ -235,7 +243,7 @@ main.wrapper {
   @media (min-width: 62rem) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-block-start: var(--spacing-800);
+    padding-block-start: var(--spacing-400);
     padding-inline: 0;
   }
 }
@@ -245,10 +253,6 @@ main.wrapper {
 
   @media (min-width: 48rem) {
     margin-block-end: var(--spacing-800);
-  }
-
-  @media (min-width: 62rem) {
-    /* padding-inline-end: var(--spacing-1600); */
   }
 }
 
@@ -268,6 +272,30 @@ main.wrapper {
 
 .subtext {
   color: var(--c-grey-500);
+}
+
+/* Question container */
+.question-container .subtext {
+  padding-block-end: var(--spacing-200);
+}
+
+/* Question */
+.question-container .text-preset-3-medium {
+  padding-block-end: var(--spacing-300);
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 1rem;
+  background-color: var(--c-white);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.progress-inner {
+  background-color: var(--c-purple-600);
+  width: 10%;
 }
 
 /* Main section options container */
@@ -295,6 +323,7 @@ main.wrapper {
   border-radius: 0.75rem;
   cursor: pointer;
   box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%,0.1);
+  transition: transform 250ms;
 
   @media (min-width: 48rem) {
     border-radius: 1.5rem;
@@ -303,6 +332,14 @@ main.wrapper {
   @media (min-width: 62rem) {
     padding: var(--spacing-300);
   }
+}
+
+.option:hover {
+  transform: translate(0.5rem);
+}
+
+.option:active {
+  transform: scale(0.95);
 }
 
 .option > div {
