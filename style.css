@@ -286,6 +286,8 @@ main.wrapper {
 
 /* Progress bar */
 .progress-bar {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 1rem;
   background-color: var(--c-white);
@@ -294,9 +296,12 @@ main.wrapper {
 }
 
 .progress-inner {
+  width: 50%;
+  height: 0.5rem;
+  border-radius: 0.5rem;
   background-color: var(--c-purple-600);
-  width: 10%;
 }
+
 
 /* Main section options container */
 .options-container {
