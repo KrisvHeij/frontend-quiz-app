@@ -52,7 +52,7 @@
 
     <main class="wrapper">
       <section class="text-container">
-        <!-- <div id="welcome hidden">
+        <div id="welcome" class="hidden">
           <h1 class="text-preset-2-light">
             Welcome to the
             <span class="text-preset-2-medium">Frontend Quiz!</span>
@@ -60,7 +60,7 @@
           <p class="subtext text-preset-6-italic">
             Pick a subject to get started.
           </p>
-        </div> -->
+        </div>
         <div class="question-container">
           <p class="subtext text-preset-6-italic">
             Question <span>NUMBER</span> of 10
@@ -77,8 +77,8 @@
           <p>Quiz completed <span>You scored...</span></p>
         </div>
       </section>
-      <section class="options-container">
-        <!-- <div>
+      <section class="options-container hidden">
+        <div>
           <div class="option">
             <div>
               <img
@@ -127,7 +127,9 @@
               </p>
             </div>
           </div>
-        </div> -->
+        </div>
+      </section>
+      <section class="answers-container">
         <div>
           <div class="option">
             <div>
@@ -153,9 +155,8 @@
               <p class="answer text-preset-4-medium">2:1</p>
             </div>
           </div>
-
-          <button class="submit">Submit answer</button>
-          <div class="error-msg">
+          <button class="btn text-preset-4-medium">Submit answer</button>
+          <div class="error-msg hidden">
             <img src="./assets/images/icon-error.svg" alt="" />
             <p>Please select an answer</p>
           </div>

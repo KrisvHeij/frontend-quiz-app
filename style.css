@@ -11,6 +11,10 @@
     max-width: 100%;
     display: block;
   }
+
+  button {
+    font-family: inherit;
+  }
 }
 
 @layer colors {
@@ -237,7 +241,7 @@ main.wrapper {
   @media (min-width: 48rem) {
     max-width: 72rem;
     margin: 0 auto;
-    padding-inline-start: var(--spacing-800);
+    padding-inline: var(--spacing-800);
   }
 
   @media (min-width: 62rem) {
@@ -275,13 +279,26 @@ main.wrapper {
 }
 
 /* Question container */
+.question-container {
+  @media (min-width: 62rem) {
+    padding-inline-end: var(--spacing-1600);
+  }
+}
 .question-container .subtext {
   padding-block-end: var(--spacing-200);
+
+  @media (min-width: 62rem) {
+    padding-block-end: var(--spacing-300);
+  }
 }
 
 /* Question */
 .question-container .text-preset-3-medium {
   padding-block-end: var(--spacing-300);
+
+  @media (min-width: 62rem) {
+    padding-block-end: var(--spacing-2300);
+  }
 }
 
 /* Progress bar */
@@ -313,7 +330,9 @@ main.wrapper {
     max-width: 100%;
   }
 }
-.options-container > div {
+
+.options-container > div,
+.answers-container > div {
   display: grid;
   gap: var(--spacing-200);
 
@@ -393,4 +412,21 @@ main.wrapper {
 
 .answer {
   color: var(--c-blue-900);
+}
+
+.btn {
+  display: block;
+  cursor: pointer;
+  border: 0;
+  padding: var(--spacing-200);
+  color: var(--c-white);
+  background-color: var(--c-purple-600);
+  border-radius: 0.75rem;
+  box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%,0.1);
+  transition: transform 250ms;
+
+  @media (min-width: 48rem) {
+    padding: var(--spacing-400);
+    border-radius: 1.5rem;
+  }
 }
