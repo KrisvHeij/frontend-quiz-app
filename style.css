@@ -269,7 +269,7 @@ main.wrapper {
   }
 }
 
-.text-container span {
+.text-container.text-preset-2-medium {
   display: inline-block;
   margin-block-start: var(--spacing-100);
 }
@@ -310,6 +310,10 @@ main.wrapper {
   background-color: var(--c-white);
   border-radius: 0.5rem;
   padding: 0.25rem;
+
+  @media (min-width: 62rem) {
+    margin-block-start: var(--spacing-400);
+  }
 }
 
 .progress-inner {
@@ -346,6 +350,7 @@ main.wrapper {
   background-color: var(--c-white);
   border-radius: 0.75rem;
   cursor: pointer;
+  border: 3px solid transparent;
   box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%,0.1);
   transition: transform 250ms;
 
@@ -359,7 +364,7 @@ main.wrapper {
 }
 
 .option:hover {
-  transform: translate(0.5rem);
+  border: 3px solid var(--c-purple-600);
 }
 
 .option:active {
@@ -431,4 +436,19 @@ main.wrapper {
   }
 }
 
-/* Button afmaken */
+.btn:hover {
+  
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  transform: none;
+}
