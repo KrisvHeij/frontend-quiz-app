@@ -352,7 +352,7 @@ main.wrapper {
   cursor: pointer;
   border: 3px solid transparent;
   box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%,0.1);
-  transition: transform 250ms;
+  transition: transform 250ms ease, border-color 250ms ease;
 
   @media (min-width: 48rem) {
     border-radius: 1.5rem;
@@ -363,12 +363,17 @@ main.wrapper {
   }
 }
 
-.option:hover {
-  border: 3px solid var(--c-purple-600);
+/* Hover states */
+.options-container .option:hover {
+  transform: scale(0.975);
+}
+.options-container .option:active {
+  transform: scale(0.95);
 }
 
-.option:active {
-  transform: scale(0.95);
+.option:hover .option-letter {
+  background-color: var(--c-purple-600);
+  color: var(--c-white);
 }
 
 .option > div {
@@ -413,6 +418,7 @@ main.wrapper {
 .option-letter {
   color: var(--c-grey-500);
   background-color: var(--c-grey-50);
+  transition: background-color 250ms ease;
 }
 
 .answer {
@@ -436,8 +442,17 @@ main.wrapper {
   }
 }
 
+/* Hover states */
+.answers-container .option:hover {
+  border: 3px solid var(--c-purple-600);
+}
+
+.answers-container .option:active {
+  transform: scale(0.975);
+}
+
 .btn:hover {
-  
+  transform: scale(0.975);
 }
 
 .btn:active {
