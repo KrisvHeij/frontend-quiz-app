@@ -110,10 +110,6 @@
   line-height: 1.5;
 }
 
-.hidden {
-  display: none;
-}
-
 /* Main styles */
 body {
   font-family: "Rubik", sans-serif;
@@ -415,6 +411,10 @@ main.wrapper {
 }
 
 /* Answers container */
+.answer-icon {
+  margin-inline-start: auto;
+}
+
 .option-letter {
   color: var(--c-grey-500);
   background-color: var(--c-grey-50);
@@ -481,3 +481,31 @@ main.wrapper {
     font-weight: var(--fw-regular);
   }
 }
+
+/* Correct & false answers */
+.answers-container .option.correct {
+  border-color: var(--c-green-500);
+
+  .option-letter {
+    background-color: var(--c-green-500);
+    color: var(--c-white);
+  }
+}
+
+.answers-container .option.false {
+  border-color: var(--c-red-500);
+
+  .option-letter {
+    background-color: var(--c-red-500);
+    color: var(--c-white);
+  }
+}
+
+
+
+
+.hidden {
+  display: none;
+}
+
+/* Doorgaan met score board */
