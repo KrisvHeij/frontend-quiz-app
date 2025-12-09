@@ -467,3 +467,17 @@ main.wrapper {
 .btn:disabled:hover {
   transform: none;
 }
+
+/* Error message */
+.error-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-100);
+  color: var(--c-red-500);
+  
+  p {
+    font-size: clamp(1.125rem, 0.5286rem + 2.5445vw, 1.5rem);
+    font-weight: var(--fw-regular);
+  }
+}
