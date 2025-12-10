@@ -580,6 +580,8 @@ body.dark-mode {
     background-image: url("./assets/images/icon-moon-light.svg")
   }
 
+  /* VERDER GAAN HIER */
+
   .toggle-label {
     display: block;
     width: 2rem;
@@ -962,3 +964,5 @@ body.dark-mode {
 .hidden {
   display: none;
 }
+
+/* Verder gaan op regel 583 met kleur aanpassingen voor dark-mode */
