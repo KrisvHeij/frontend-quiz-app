@@ -548,7 +548,11 @@ main.wrapper {
   }
 }
 
-
+/* Dark mode */
+body.dark-mode {
+  background-color: var(--c-blue-850);
+  background-image: url("./assets/images/pattern-background-mobile-dark.svg");
+}
 
 
 .hidden {
