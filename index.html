@@ -21,7 +21,7 @@
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
 
-  <body class="dark-mode">
+  <body class="">
     <header class="wrapper header">
       <div class="header-subject hidden">
         <img
@@ -32,11 +32,12 @@
         <p class="text-preset-4-medium">Accessibility</p>
       </div>
       <div id="toggle-mode" class="toggle-mode-container">
-        <img
-          class="toggle-mode-icon"
+        <div class="toggle-mode-icon toggle-mode-icon-sun"></div>
+        <!-- <img
+          class="toggle-mode-icon toggle-mode-icon-sun"
           src="./assets/images/icon-sun-dark.svg"
           alt=""
-        />
+        /> -->
         <div>
           <input type="checkbox" name="toggle-switch" id="toggle-switch" />
           <label for="toggle-switch" class="toggle-label">
@@ -81,7 +82,7 @@
           </h1>
         </div>
       </section>
-      <section class="options-container hidden">
+      <section class="options-container">
         <div>
           <div class="option">
             <div>
@@ -188,7 +189,7 @@
         </div>
       </section>
 
-      <section class="result-container">
+      <section class="result-container hidden">
         <div>
           <div class="header-subject">
             <img

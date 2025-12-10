@@ -184,6 +184,18 @@ header.wrapper {
   }
 }
 
+.toggle-mode-icon-sun,
+.toggle-mode-icon-moon {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.toggle-mode-icon-sun {
+  background-image: url("./assets/images/icon-sun-dark.svg");
+}
+.toggle-mode-icon-moon {
+  background-image: url("./assets/images/icon-moon-dark.svg")
+}
+
 .toggle-label {
   display: block;
   width: 2rem;
