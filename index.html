@@ -28,7 +28,7 @@
           src="./assets/images/icon-accessibility.svg"
           alt=""
         />
-        <h1 class="text-preset-4-medium">Accessibility</h1>
+        <p class="text-preset-4-medium">Accessibility</p>
       </div>
       <div id="toggle-mode" class="toggle-mode-container">
         <img
@@ -61,7 +61,7 @@
             Pick a subject to get started.
           </p>
         </div>
-        <div class="question-container">
+        <div class="question-container hidden">
           <p class="subtext text-preset-6-italic">
             Question <span>NUMBER</span> of 10
           </p>
@@ -73,8 +73,11 @@
             <div class="progress-inner"></div>
           </div>
         </div>
-        <div id="result" class="hidden">
-          <p>Quiz completed <span>You scored...</span></p>
+        <div id="result" class="result-header">
+          <h1 class="text-preset-2-light">
+            Quiz completed
+            <span class="text-preset-2-medium">You scored...</span>
+          </h1>
         </div>
       </section>
       <section class="options-container hidden">
@@ -129,14 +132,14 @@
           </div>
         </div>
       </section>
-      <section class="answers-container">
+      <section class="answers-container hidden">
         <div>
-          <div class="option false">
+          <div class="option">
             <div>
               <p class="option-icon option-letter text-preset-4-medium">A</p>
               <p class="answer text-preset-4-medium">3:1</p>
               <img
-                class="answer-icon"
+                class="answer-icon hidden"
                 src="./assets/images/icon-incorrect.svg"
                 alt=""
               />
@@ -146,18 +149,33 @@
             <div>
               <p class="option-icon option-letter text-preset-4-medium">B</p>
               <p class="answer text-preset-4-medium">4.5:1</p>
+              <img
+                class="answer-icon hidden"
+                src="./assets/images/icon-incorrect.svg"
+                alt=""
+              />
             </div>
           </div>
           <div class="option">
             <div>
               <p class="option-icon option-letter text-preset-4-medium">C</p>
               <p class="answer text-preset-4-medium">7:1</p>
+              <img
+                class="answer-icon hidden"
+                src="./assets/images/icon-incorrect.svg"
+                alt=""
+              />
             </div>
           </div>
           <div class="option">
             <div>
               <p class="option-icon option-letter text-preset-4-medium">D</p>
               <p class="answer text-preset-4-medium">2:1</p>
+              <img
+                class="answer-icon hidden"
+                src="./assets/images/icon-incorrect.svg"
+                alt=""
+              />
             </div>
           </div>
           <button class="btn text-preset-4-medium">Submit answer</button>
@@ -166,6 +184,21 @@
             <p>Please select an answer</p>
           </div>
         </div>
+      </section>
+      <section class="result-container">
+        <div>
+          <div class="header-subject">
+            <img
+              class="option-icon option-icon-4"
+              src="./assets/images/icon-accessibility.svg"
+              alt=""
+            />
+            <p class="text-preset-4-medium">Accessibility</p>
+          </div>
+          <p class="text-preset-1-medium">8</p>
+          <p class="subtext text-preset-4-medium">out of 10</p>
+        </div>
+        <button class="btn text-preset-4-medium">Play Again</button>
       </section>
     </main>
 

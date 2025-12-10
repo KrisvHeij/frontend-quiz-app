@@ -154,11 +154,12 @@ header.wrapper {
   }
 }
 
-/* Qustion subject */
+/* Question subject */
 .header-subject {
   display: flex;
   gap: var(--spacing-200);
   align-items: center;
+  color:var(--c-blue-900)
 }
 
 /* Toggle Light/Dark section */
@@ -265,8 +266,8 @@ main.wrapper {
   }
 }
 
-.text-container.text-preset-2-medium {
-  display: inline-block;
+.text-container .text-preset-2-medium {
+  display: block;
   margin-block-start: var(--spacing-100);
 }
 
@@ -280,6 +281,7 @@ main.wrapper {
     padding-inline-end: var(--spacing-1600);
   }
 }
+
 .question-container .subtext {
   padding-block-end: var(--spacing-200);
 
@@ -427,6 +429,7 @@ main.wrapper {
 
 .btn {
   display: block;
+  width: 100%;
   cursor: pointer;
   border: 0;
   padding: var(--spacing-200);
@@ -438,6 +441,50 @@ main.wrapper {
 
   @media (min-width: 48rem) {
     padding: var(--spacing-400);
+    border-radius: 1.5rem;
+  }
+}
+
+/* Result container */
+.result-header {
+  margin-block-end: var(--spacing-300);
+
+  h1 {
+    @media (min-width: 48rem) {
+      margin-block-end: var(--spacing-800);
+    }
+  }
+}
+
+.result-container > div {
+  display: grid;
+  gap: var(--spacing-200);
+  justify-content: center;;
+  text-align: center;
+  margin-block-end: var(--spacing-200);
+  padding: var(--spacing-400);
+  border-radius: 0.75rem;
+  background-color: var(--c-white);
+
+  @media (min-width: 48rem) {
+    margin-block-end: var(--spacing-400);
+    padding: var(--spacing-600);
+    border-radius: 1.5rem;
+  }
+}
+
+.result-container .header-subject {
+  @media (min-width: 48rem) {
+    margin-block-end: var(--spacing-300);
+  }
+}
+
+.result-container .text-preset-1-medium {
+  color: var(--c-blue-900);
+}
+
+.result-container .btn {
+  @media (min-width: 48rem) {
     border-radius: 1.5rem;
   }
 }
@@ -507,5 +554,3 @@ main.wrapper {
 .hidden {
   display: none;
 }
-
-/* Doorgaan met score board */
