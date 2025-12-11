@@ -40,7 +40,6 @@
   }
 }
 
-/* Later clamp toevoegen voor font-size */
 @layer font-styles {
   :root {
     --fw-light: 300;
@@ -66,32 +65,27 @@
 
 /* Text Presets */
 .text-preset-1-medium {
-  /* font-size: 9rem/5.5rem; */
   font-size: clamp(5.5rem, 2.1603rem + 14.2494vw, 9rem);
   font-weight: var(--fw-medium);
   font-style: normal;
 }
 .text-preset-2-medium {
-  /* font-size: 4rem/2.5rem; */
   font-size: clamp(2.5rem, 1.0687rem + 6.1069vw, 4rem);
   font-weight: var(--fw-medium);
   font-style: normal;
 }
 .text-preset-2-light {
-  /* font-size: 4rem/2.5rem; */
   font-size: clamp(2.5rem, 1.0687rem + 6.1069vw, 4rem);
   font-weight: var(--fw-light);
   font-style: normal;
 }
 .text-preset-3-medium {
-  /* font-size: 2.25rem/1.25rem; */
   font-size: clamp(1.25rem, 0.2958rem + 4.0712vw, 2.25rem);
   font-weight: var(--fw-medium);
   font-style: normal;
   line-height: 1.2;
 }
 .text-preset-4-medium {
-  /* font-size: 1.75rem/1.125rem; */
   font-size: clamp(1.125rem, 0.5286rem + 2.5445vw, 1.75rem);
   font-weight: var(--fw-medium);
   font-style: normal;
@@ -103,7 +97,6 @@
   line-height: 1.5;
 }
 .text-preset-6-italic {
-  /* font-size: 1.25rem/0.875rem; */
   font-size: clamp(0.875rem, 0.5172rem + 1.5267vw, 1.25rem);
   font-weight: var(--fw-regular);
   font-style: italic;
@@ -125,7 +118,6 @@ body {
   @media (min-width: 62rem) {
     background-image: url("./assets/images/pattern-background-desktop-light.svg");
     background-size: cover;
-    /* padding-block-start: var(--spacing-600); */
     padding-inline: var(--spacing-400);
   }
 }
@@ -563,11 +555,10 @@ main.wrapper {
 }
 
 /* Dark mode */
+
 body.dark-mode {
   background-color: var(--c-blue-900);
   background-image: url("./assets/images/pattern-background-mobile-dark.svg");
-
-
 
   /* Question subject */
   .header-subject {
@@ -592,7 +583,6 @@ body.dark-mode {
   }
 
   /* Question container */
-  /* Question */
   .question-container .text-preset-3-medium {
     color: var(--c-white);
   }
