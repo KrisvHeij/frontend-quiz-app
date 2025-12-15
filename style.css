@@ -402,19 +402,19 @@ main.wrapper {
   }
 }
 
-.option-icon-1 {
+.option-icon-html {
   background-color: var(--c-orange-50);
 }
 
-.option-icon-2 {
+.option-icon-css {
   background-color: var(--c-green-100);
 }
 
-.option-icon-3 {
+.option-icon-javascript {
   background-color: var(--c-blue-50);
 }
 
-.option-icon-4 {
+.option-icon-accessibility {
   background-color: var(--c-purple-100);
 }
 
