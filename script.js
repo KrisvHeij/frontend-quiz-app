@@ -10,6 +10,16 @@ const options = document.querySelectorAll(".option");
 //     })
 // })
 
+// Function to get data from data.json
+let quizData = [];
+
+async function getData() {
+  const response = await fetch("./data.json");
+  const data = await response.json();
+
+  quizData = data.quizzes;
+}
+
 // Function for toggling dark mode
 function darkMode() {
   setTimeout(() => {
@@ -17,18 +27,30 @@ function darkMode() {
   }, 200);
 }
 
+// Function to start quiz
+function startQuiz(e) {
+  const id = e.target.closest(".option")?.id;
 
-function chooseOption(event) {
-  const option = event.target.closest(".option");
-  if (!option) {
+  if(!id) {
     return;
+  } else {
+    console.log(id);
+    // console.log(quizData);
+    showQuestion(id);
   }
-  console.log(option.id);
+}
+
+// Show question
+function showQuestion(topic) {
+  const quiz = quizData.find(q => q.title === topic);
+  console.log(quiz);
 }
 
 // EventListeners
 toggleSwitch.addEventListener("click", darkMode);
 
 optionsContainer.addEventListener("click", (e) => {
-  chooseOption(e);
+  startQuiz(e);
 })
+
+getData();
