@@ -124,17 +124,20 @@ body {
 
 /* Header */
 .header {
+  min-height: 4.5rem;
   padding-block: var(--spacing-200);
   padding-inline: var(--spacing-300);
   display: flex;
 
   @media (min-width: 48rem) {
+    min-height: 7.5rem;
     max-width: 44rem;
     margin-inline: auto;
     padding-block-start: var(--spacing-600);
   }
 
   @media (min-width: 62rem) {
+    min-height: 8.5rem;
     padding-block-end: var(--spacing-400);
   }
 }

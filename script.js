@@ -33,23 +33,15 @@ function startQuiz(e) {
     console.log(id);
     console.log(quizData)
     const quiz = quizData.find(q => q.title === id);
+
     // Show subject in header
-    headerQuizSubject.classList.remove("hidden");
+    // headerQuizSubject.classList.remove("hidden");
     const headerImg = document.createElement("img");
-    headerImg.classList = `option.icon, option-icon-${quiz.title.toLowerCase()}`;
+    headerImg.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
     headerImg.src = quiz.icon;
     const headerSubjectText = document.createElement("p");
-    headerSubjectText.classList = ""
-    headerSubjectText.textContent = 
-    headerQuizSubject.appendChild(headerImg);
-    // headerQuizSubject.innerHTML = `
-    //   <img
-    //       class="option-icon option-icon-${quiz.title.toLowerCase()}"
-    //       src="${quiz.icon}"
-    //       alt=""
-    //     />
-    //     <p class="text-preset-4-medium">${quiz.title}</p>
-    // `;
+    headerSubjectText.className = "text-preset-4-medium";    headerSubjectText.textContent = quiz.title;
+    headerQuizSubject.append(headerImg, headerSubjectText);
 
     // Show question
     textContainer.innerHTML = `
