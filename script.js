@@ -2,11 +2,12 @@ const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
+
 const optionsContainer = document.getElementById("options-container");
 const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
-let questionNumber = 1;
+let questionCount = 1;
 // Function to get data from data.json
 let quizData = [];
 
@@ -36,7 +37,6 @@ function startQuiz(e) {
     const quiz = quizData.find(q => q.title === id);
 
     // Show subject in header
-    // headerQuizSubject.classList.remove("hidden");
     const headerImg = document.createElement("img");
     headerImg.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
     headerImg.src = quiz.icon;
@@ -45,25 +45,30 @@ function startQuiz(e) {
     headerQuizSubject.append(headerImg, headerSubjectText);
 
     // Clear welcome text and show first question
-    textContainer.removeChild(welcomeText);
+    textContainer.replaceChildren();
 
+    const questionContainer = document.createElement("div");
+    questionContainer.className = "question-container";
 
+    const questionSubtext = document.createElement("p");
+    questionSubtext.classList.add("subtext", "text-preset-6-italic");
+    questionSubtext.textContent = `Question ${questionCount} of 10`;
 
+    const question = document.createElement("p");
+    question.className = "text-preset-3-medium";
+    question.textContent = quiz.questions[questionCount - 1].question;
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar";
+
+    const progressBarInner = document.createElement("div");
+    progressBarInner.className = "progress-inner";
+    progressBar.append(progressBarInner);
+
+    progressBarInner.style.width = `${questionCount * 10}%`;
     
-    // textContainer.innerHTML = `
-    //   <div class="question-container">
-    //       <p class="subtext text-preset-6-italic">
-    //         Question <span>${questionNumber}</span> of 10
-    //       </p>
-    //       <p class="text-preset-3-medium">
-    //         Which of these color contrast ratios defines the minimum WCAG 2.1
-    //         Level AA requirement for normal text?
-    //       </p>
-    //       <div class="progress-bar">
-    //         <div class="progress-inner"></div>
-    //       </div>
-    //     </div>
-    // `;
+    questionContainer.append(questionSubtext, question, progressBar);
+    textContainer.append(questionContainer);
 
     console.log(quiz);
   }
