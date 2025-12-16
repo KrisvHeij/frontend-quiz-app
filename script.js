@@ -72,9 +72,41 @@ function startQuiz(e) {
     // Clear options and show render possible answers
     optionsContainer.replaceChildren();
 
+    const answersContainer = document.createElement("div");
+    answersContainer.className = "answers-container";
+    const answerOptions = quiz.questions[questionCount - 1].options;
 
+    // Create each asnwer option
+    answerOptions.forEach((answerOption, index) => {
+      const option = document.createElement("div");
+      option.className = "option";
+      const div = document.createElement("div");
+      const letterOptions = ["A", "B", "C", "D"];
+      const letter = document.createElement("p");
+      letter.classList.add("option-icon", "option-letter", "text-preset-4-medium");
+      letter.textContent = letterOptions[index];
+      const answer = document.createElement("p");
+      answer.classList.add("answer", "text-preset-4-medium");
+      answer.textContent = answerOption;
+      const answerIcon = document.createElement("img");
+      answerIcon.classList.add("answer-icon", "hidden");
 
+      div.append(letter, answer, answerIcon);
+      option.append(div);
 
+      answersContainer.append(option);
+    })
+
+    // Create submit answer button
+    const submitButton = document.createElement("button");
+    submitButton.classList.add("btn", "text-preset-4-medium");
+    submitButton.textContent = "Submit answer";
+
+    answersContainer.append(submitButton);
+
+    optionsContainer.append(answersContainer);
+
+    // Continue with check and submit answer....
 
     console.log(quiz);
   }
