@@ -1,5 +1,6 @@
 const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
+const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const optionsContainer = document.getElementById("options-container");
 const options = document.querySelectorAll(".option");
@@ -43,21 +44,26 @@ function startQuiz(e) {
     headerSubjectText.className = "text-preset-4-medium";    headerSubjectText.textContent = quiz.title;
     headerQuizSubject.append(headerImg, headerSubjectText);
 
-    // Show question
-    textContainer.innerHTML = `
-      <div class="question-container">
-          <p class="subtext text-preset-6-italic">
-            Question <span>${questionNumber}</span> of 10
-          </p>
-          <p class="text-preset-3-medium">
-            Which of these color contrast ratios defines the minimum WCAG 2.1
-            Level AA requirement for normal text?
-          </p>
-          <div class="progress-bar">
-            <div class="progress-inner"></div>
-          </div>
-        </div>
-    `;
+    // Clear welcome text and show first question
+    textContainer.removeChild(welcomeText);
+
+
+
+    
+    // textContainer.innerHTML = `
+    //   <div class="question-container">
+    //       <p class="subtext text-preset-6-italic">
+    //         Question <span>${questionNumber}</span> of 10
+    //       </p>
+    //       <p class="text-preset-3-medium">
+    //         Which of these color contrast ratios defines the minimum WCAG 2.1
+    //         Level AA requirement for normal text?
+    //       </p>
+    //       <div class="progress-bar">
+    //         <div class="progress-inner"></div>
+    //       </div>
+    //     </div>
+    // `;
 
     console.log(quiz);
   }
