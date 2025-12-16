@@ -2,7 +2,6 @@ const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
-
 const optionsContainer = document.getElementById("options-container");
 const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
@@ -69,6 +68,13 @@ function startQuiz(e) {
     
     questionContainer.append(questionSubtext, question, progressBar);
     textContainer.append(questionContainer);
+
+    // Clear options and show render possible answers
+    optionsContainer.replaceChildren();
+
+
+
+
 
     console.log(quiz);
   }

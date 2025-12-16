@@ -331,19 +331,19 @@ main.wrapper {
 
 
 /* Main section options container */
-.options-container {
-  @media (min-width: 62rem) {
-    max-width: 35.25rem;
-  }
-}
-
-.options-container > div,
-.answers-container > div {
+.options-container,
+.answers-container {
   display: grid;
   gap: var(--spacing-200);
 
   @media (min-width: 48rem) {
     gap: var(--spacing-300);
+  }
+}
+
+.options-container {
+  @media (min-width: 62rem) {
+    max-width: 35.25rem;
   }
 }
 
