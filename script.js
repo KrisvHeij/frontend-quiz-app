@@ -20,9 +20,7 @@ async function getData() {
 
 // Function for toggling dark mode
 function darkMode() {
-  setTimeout(() => {
-    body.classList.toggle("dark-mode");
-  }, 200);
+  body.classList.toggle("dark-mode");
 }
 
 // Start Quiz
