@@ -370,7 +370,7 @@ main.wrapper {
   color: var(--c-blue-900);
 }
 
-/* Hover states */
+/* Hover & selected states*/
 .options-container .option:hover {
   transform: scale(0.975);
 }
@@ -378,9 +378,14 @@ main.wrapper {
   transform: scale(0.95);
 }
 
-.option:hover .option-letter {
+.option:hover .option-letter,
+.option.selected .option-letter {
   background-color: var(--c-purple-600);
   color: var(--c-white);
+}
+
+.option.selected {
+  border: 3px solid var(--c-purple-600);
 }
 
 .option > div {

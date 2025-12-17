@@ -3,14 +3,13 @@ const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const optionsContainer = document.getElementById("options-container");
-const options = document.querySelectorAll(".option");
+// const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
 let questionCount = 1;
 let quizData = [];
 
 // Function to get data from data.json
-
 async function getData() {
   const response = await fetch("./data.json");
   const data = await response.json();
@@ -75,10 +74,11 @@ function startQuiz(e) {
     answersContainer.className = "answers-container";
     const answerOptions = quiz.questions[questionCount - 1].options;
 
-    // Create each asnwer option
+    // Create each answer option
     answerOptions.forEach((answerOption, index) => {
       const option = document.createElement("div");
-      option.className = "option";
+      option.classList.add("option", "answer-option");
+      option.dataset.index = index;
       const div = document.createElement("div");
       const letterOptions = ["A", "B", "C", "D"];
       const letter = document.createElement("p");
@@ -98,17 +98,51 @@ function startQuiz(e) {
 
     // Create submit answer button
     const submitButton = document.createElement("button");
+    submitButton.id = "submit-btn";
     submitButton.classList.add("btn", "text-preset-4-medium");
     submitButton.textContent = "Submit answer";
+    submitButton.disabled = true;
 
     answersContainer.append(submitButton);
 
+    // Create error message
+    const errorMsg = document.createElement("div");
+    errorMsg.id = "error-msg";
+    errorMsg.classList.add("error-msg", "hidden");
+    const errorMsgIcon = document.createElement("img");
+    errorMsgIcon.src = "./assets/images/icon-error.svg";
+    const errorMsgText = document.createElement("p");
+    errorMsgText.textContent = "Please select an answer";
+
+    errorMsg.append(errorMsgIcon, errorMsgText);
+    answersContainer.append(errorMsg);
+
     optionsContainer.append(answersContainer);
 
-    // Continue with check and submit answer....
+    // Submit & check answer
+    answersContainer.addEventListener("click", (e) => {
+      const option = e.target.closest(".answer-option");
+      if(!option) return;
+      
+      document.querySelectorAll(".answer-option").forEach((el) => {
+        el.classList.remove("selected");
+      })
+
+      option.classList.add("selected");
+      submitButton.disabled = false;
+
+      // Verder gaan met submit & antwoord check
+
+      const chosenIndex = option.dataset.index;
+      const chosenAnswer = quiz.questions[questionCount - 1].options[chosenIndex];
+
+      console.log(chosenAnswer);
+    })
 
     console.log(quiz);
   }
+
+  
 }
 
 // EventListeners
