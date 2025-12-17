@@ -7,8 +7,9 @@ const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
 let questionCount = 1;
-// Function to get data from data.json
 let quizData = [];
+
+// Function to get data from data.json
 
 async function getData() {
   const response = await fetch("./data.json");
@@ -110,12 +111,6 @@ function startQuiz(e) {
 
     console.log(quiz);
   }
-}
-
-// Show question
-function showQuestion(topic) {
-  // const quiz = quizData.find(q => q.title === topic);
-  // console.log(quiz);
 }
 
 // EventListeners
