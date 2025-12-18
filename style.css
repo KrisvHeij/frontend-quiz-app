@@ -512,6 +512,10 @@ main.wrapper {
   transform: scale(0.975);
 }
 
+.option-disabled {
+  pointer-events: none;
+}
+
 .btn:hover {
   transform: scale(0.975);
 }

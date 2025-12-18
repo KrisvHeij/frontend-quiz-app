@@ -29,8 +29,8 @@ function startQuiz(e) {
   if(!id) {
     return;
   } else {
-    console.log(id);
-    console.log(quizData)
+    // console.log(id);
+    // console.log(quizData)
     const quiz = quizData.find(q => q.title === id);
 
     // Show subject in header
@@ -101,7 +101,7 @@ function startQuiz(e) {
     submitButton.id = "submit-btn";
     submitButton.classList.add("btn", "text-preset-4-medium");
     submitButton.textContent = "Submit answer";
-    submitButton.disabled = true;
+    // submitButton.disabled = true;
 
     answersContainer.append(submitButton);
 
@@ -120,6 +120,7 @@ function startQuiz(e) {
     optionsContainer.append(answersContainer);
 
     // Submit & check answer
+    let selectedOption = null;
     answersContainer.addEventListener("click", (e) => {
       const option = e.target.closest(".answer-option");
       if(!option) return;
@@ -127,18 +128,62 @@ function startQuiz(e) {
       document.querySelectorAll(".answer-option").forEach((el) => {
         el.classList.remove("selected");
       })
-
+        
+      errorMsg.classList.add("hidden");
       option.classList.add("selected");
-      submitButton.disabled = false;
-
-      // Verder gaan met submit & antwoord check
-
-      const chosenIndex = option.dataset.index;
-      const chosenAnswer = quiz.questions[questionCount - 1].options[chosenIndex];
-
-      console.log(chosenAnswer);
+      
+      // submitButton.disabled = false;
+      selectedOption = option;
     })
 
+    let chosenAnswer = null;
+    let correctAnswer = null;
+    submitButton.addEventListener("click", () => {
+      if(!selectedOption) {
+        errorMsg.classList.remove("hidden");
+        return;
+      }
+      
+      const chosenIndex = Number(selectedOption.dataset.index);
+      chosenAnswer = quiz.questions[questionCount - 1].options[chosenIndex];
+      const question = quiz.questions[questionCount - 1];
+      correctAnswer = question.answer;
+
+      const icon = selectedOption.querySelector("img");
+      
+      if (chosenAnswer === correctAnswer) {
+        icon.src = "./assets/images/icon-correct.svg";
+        icon.classList.remove("hidden");
+        selectedOption.classList.add("correct");
+
+        document.querySelectorAll(".answer-option").forEach((el) => {
+          el.classList.add("option-disabled");
+        })
+      } else {
+        icon.src = "./assets/images/icon-incorrect.svg";
+        icon.classList.remove("hidden");
+        selectedOption.classList.add("false");
+
+        
+
+        const correctIndex = question.options.indexOf(correctAnswer);
+        const correctOption = document.querySelector(`.answer-option[data-index="${correctIndex}"]`);
+        console.log(correctIndex);
+
+        if (correctOption) {
+          const correctOptionIcon = correctOption.querySelector("img");
+          correctOptionIcon.src = "./assets/images/icon-correct.svg";
+          correctOptionIcon.classList.remove("hidden");
+        }
+      }
+
+      // Verder gaan met next Question optie + score bijhouden
+      
+      
+    })
+    
+    
+    
     console.log(quiz);
   }
 
