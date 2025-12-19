@@ -236,3 +236,5 @@ async function init() {
 }
 
 init();
+
+// Aparte functions maken en eventListeners uit de functies halen
