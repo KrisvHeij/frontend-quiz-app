@@ -6,8 +6,10 @@ const optionsContainer = document.getElementById("options-container");
 // const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
+let questionContainer, questionSubtext, question, progressBarInner, answersContainer, answerOptions, submitButton;
 let questionCount = 1;
 let quizData = [];
+let quiz = null;
 
 // Function to get data from data.json
 async function getData() {
@@ -22,6 +24,16 @@ function darkMode() {
   body.classList.toggle("dark-mode");
 }
 
+// Function for next question
+function nextQuestion() {
+  questionCount++;
+  // Update question container
+  questionSubtext.textContent = `Question ${questionCount} of 10`;
+  question.textContent = quiz.questions[questionCount - 1].question;
+  // Update progressbar
+  progressBarInner.style.width = `${questionCount * 10}%`;
+}
+
 // Start Quiz
 function startQuiz(e) {
   const id = e.target.closest(".option")?.id;
@@ -31,7 +43,7 @@ function startQuiz(e) {
   } else {
     // console.log(id);
     // console.log(quizData)
-    const quiz = quizData.find(q => q.title === id);
+    quiz = quizData.find(q => q.title === id);
 
     // Show subject in header
     const headerImg = document.createElement("img");
@@ -44,21 +56,21 @@ function startQuiz(e) {
     // Clear welcome text and show first question
     textContainer.replaceChildren();
 
-    const questionContainer = document.createElement("div");
+    questionContainer = document.createElement("div");
     questionContainer.className = "question-container";
 
-    const questionSubtext = document.createElement("p");
+    questionSubtext = document.createElement("p");
     questionSubtext.classList.add("subtext", "text-preset-6-italic");
     questionSubtext.textContent = `Question ${questionCount} of 10`;
 
-    const question = document.createElement("p");
+    question = document.createElement("p");
     question.className = "text-preset-3-medium";
     question.textContent = quiz.questions[questionCount - 1].question;
 
     const progressBar = document.createElement("div");
     progressBar.className = "progress-bar";
 
-    const progressBarInner = document.createElement("div");
+    progressBarInner = document.createElement("div");
     progressBarInner.className = "progress-inner";
     progressBar.append(progressBarInner);
 
@@ -70,9 +82,9 @@ function startQuiz(e) {
     // Clear options and show render possible answers
     optionsContainer.replaceChildren();
 
-    const answersContainer = document.createElement("div");
+    answersContainer = document.createElement("div");
     answersContainer.className = "answers-container";
-    const answerOptions = quiz.questions[questionCount - 1].options;
+    answerOptions = quiz.questions[questionCount - 1].options;
 
     // Create each answer option
     answerOptions.forEach((answerOption, index) => {
@@ -97,7 +109,7 @@ function startQuiz(e) {
     })
 
     // Create submit answer button
-    const submitButton = document.createElement("button");
+    submitButton = document.createElement("button");
     submitButton.id = "submit-btn";
     submitButton.classList.add("btn", "text-preset-4-medium");
     submitButton.textContent = "Submit answer";
@@ -155,20 +167,13 @@ function startQuiz(e) {
         icon.src = "./assets/images/icon-correct.svg";
         icon.classList.remove("hidden");
         selectedOption.classList.add("correct");
-
-        document.querySelectorAll(".answer-option").forEach((el) => {
-          el.classList.add("option-disabled");
-        })
       } else {
         icon.src = "./assets/images/icon-incorrect.svg";
         icon.classList.remove("hidden");
         selectedOption.classList.add("false");
 
-        
-
         const correctIndex = question.options.indexOf(correctAnswer);
         const correctOption = document.querySelector(`.answer-option[data-index="${correctIndex}"]`);
-        console.log(correctIndex);
 
         if (correctOption) {
           const correctOptionIcon = correctOption.querySelector("img");
@@ -177,17 +182,21 @@ function startQuiz(e) {
         }
       }
 
+      // Disable options
+      document.querySelectorAll(".answer-option").forEach((el) => {
+        el.classList.add("option-disabled");
+      })
+
       // Verder gaan met next Question optie + score bijhouden
-      
+      submitButton.textContent = "Next question";
+      submitButton.addEventListener("click", () => {
+        nextQuestion();
+      })
       
     })
-    
-    
-    
+
     console.log(quiz);
   }
-
-  
 }
 
 // EventListeners
