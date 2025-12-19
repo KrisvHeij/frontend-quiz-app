@@ -6,10 +6,15 @@ const optionsContainer = document.getElementById("options-container");
 // const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
-let questionContainer, questionSubtext, question, progressBarInner, answersContainer, answerOptions, submitButton;
-let questionCount = 1;
+let questionContainer, questionSubtext, question, progressBarInner, answersContainer, answerOptions, answerText, submitButton, selectedOption;
 let quizData = [];
 let quiz = null;
+
+const state = {
+  currentQuestionIndex : 0,
+  selectedOptionIndex: null,
+  score: 0
+}
 
 // Function to get data from data.json
 async function getData() {
@@ -26,12 +31,29 @@ function darkMode() {
 
 // Function for next question
 function nextQuestion() {
-  questionCount++;
+  state.currentQuestionIndex++;
   // Update question container
-  questionSubtext.textContent = `Question ${questionCount} of 10`;
-  question.textContent = quiz.questions[questionCount - 1].question;
+  questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
+  question.textContent = quiz.questions[state.currentQuestionIndex].question;
   // Update progressbar
-  progressBarInner.style.width = `${questionCount * 10}%`;
+  progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
+  // Update answer container
+  // Remove previous styles
+  const options =  document.querySelectorAll(".option");
+  options.forEach((option) => {
+    option.classList.remove("option-disabled", "selected", "correct", "false");
+    const icon = option.querySelector("img");
+    icon.classList.add("hidden");
+  })
+  answerOptions = quiz.questions[state.currentQuestionIndex].options;
+  const answerTexts = document.querySelectorAll(".answer");
+  answerOptions.forEach((answerOption, index) => {
+    answerTexts[index].textContent = answerOption;
+  })
+  submitButton.textContent = "Submit answer";
+
+  
+
 }
 
 // Start Quiz
@@ -41,8 +63,6 @@ function startQuiz(e) {
   if(!id) {
     return;
   } else {
-    // console.log(id);
-    // console.log(quizData)
     quiz = quizData.find(q => q.title === id);
 
     // Show subject in header
@@ -50,7 +70,8 @@ function startQuiz(e) {
     headerImg.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
     headerImg.src = quiz.icon;
     const headerSubjectText = document.createElement("p");
-    headerSubjectText.className = "text-preset-4-medium";    headerSubjectText.textContent = quiz.title;
+    headerSubjectText.className = "text-preset-4-medium";    
+    headerSubjectText.textContent = quiz.title;
     headerQuizSubject.append(headerImg, headerSubjectText);
 
     // Clear welcome text and show first question
@@ -61,11 +82,11 @@ function startQuiz(e) {
 
     questionSubtext = document.createElement("p");
     questionSubtext.classList.add("subtext", "text-preset-6-italic");
-    questionSubtext.textContent = `Question ${questionCount} of 10`;
+    questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
 
     question = document.createElement("p");
     question.className = "text-preset-3-medium";
-    question.textContent = quiz.questions[questionCount - 1].question;
+    question.textContent = quiz.questions[state.currentQuestionIndex].question;
 
     const progressBar = document.createElement("div");
     progressBar.className = "progress-bar";
@@ -74,7 +95,7 @@ function startQuiz(e) {
     progressBarInner.className = "progress-inner";
     progressBar.append(progressBarInner);
 
-    progressBarInner.style.width = `${questionCount * 10}%`;
+    progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
     
     questionContainer.append(questionSubtext, question, progressBar);
     textContainer.append(questionContainer);
@@ -84,7 +105,7 @@ function startQuiz(e) {
 
     answersContainer = document.createElement("div");
     answersContainer.className = "answers-container";
-    answerOptions = quiz.questions[questionCount - 1].options;
+    answerOptions = quiz.questions[state.currentQuestionIndex].options;
 
     // Create each answer option
     answerOptions.forEach((answerOption, index) => {
@@ -96,13 +117,13 @@ function startQuiz(e) {
       const letter = document.createElement("p");
       letter.classList.add("option-icon", "option-letter", "text-preset-4-medium");
       letter.textContent = letterOptions[index];
-      const answer = document.createElement("p");
-      answer.classList.add("answer", "text-preset-4-medium");
-      answer.textContent = answerOption;
+      answerText = document.createElement("p");
+      answerText.classList.add("answer", "text-preset-4-medium");
+      answerText.textContent = answerOption;
       const answerIcon = document.createElement("img");
       answerIcon.classList.add("answer-icon", "hidden");
 
-      div.append(letter, answer, answerIcon);
+      div.append(letter, answerText, answerIcon);
       option.append(div);
 
       answersContainer.append(option);
@@ -113,7 +134,6 @@ function startQuiz(e) {
     submitButton.id = "submit-btn";
     submitButton.classList.add("btn", "text-preset-4-medium");
     submitButton.textContent = "Submit answer";
-    // submitButton.disabled = true;
 
     answersContainer.append(submitButton);
 
@@ -132,7 +152,7 @@ function startQuiz(e) {
     optionsContainer.append(answersContainer);
 
     // Submit & check answer
-    let selectedOption = null;
+    selectedOption = null;
     answersContainer.addEventListener("click", (e) => {
       const option = e.target.closest(".answer-option");
       if(!option) return;
@@ -144,7 +164,6 @@ function startQuiz(e) {
       errorMsg.classList.add("hidden");
       option.classList.add("selected");
       
-      // submitButton.disabled = false;
       selectedOption = option;
     })
 
@@ -156,14 +175,15 @@ function startQuiz(e) {
         return;
       }
       
-      const chosenIndex = Number(selectedOption.dataset.index);
-      chosenAnswer = quiz.questions[questionCount - 1].options[chosenIndex];
-      const question = quiz.questions[questionCount - 1];
+      state.selectedOptionIndex = Number(selectedOption.dataset.index);
+      chosenAnswer = quiz.questions[state.currentQuestionIndex].options[state.selectedOptionIndex];
+      const question = quiz.questions[state.currentQuestionIndex];
       correctAnswer = question.answer;
 
       const icon = selectedOption.querySelector("img");
       
       if (chosenAnswer === correctAnswer) {
+        state.score++;
         icon.src = "./assets/images/icon-correct.svg";
         icon.classList.remove("hidden");
         selectedOption.classList.add("correct");
@@ -182,6 +202,8 @@ function startQuiz(e) {
         }
       }
 
+      console.log("Score: " + state.score);
+
       // Disable options
       document.querySelectorAll(".answer-option").forEach((el) => {
         el.classList.add("option-disabled");
@@ -196,6 +218,7 @@ function startQuiz(e) {
     })
 
     console.log(quiz);
+    
   }
 }
 
@@ -206,4 +229,10 @@ optionsContainer.addEventListener("click", (e) => {
   startQuiz(e);
 })
 
-getData();
+
+// Function to wait for data & start quiz
+async function init() {
+  await getData();
+}
+
+init();
