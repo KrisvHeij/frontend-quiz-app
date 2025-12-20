@@ -3,7 +3,6 @@ const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const optionsContainer = document.getElementById("options-container");
-// const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
 let questionContainer, questionSubtext, question, progressBarInner, answersContainer, answerOptions, answerText, submitButton, selectedOption;
@@ -29,8 +28,9 @@ function darkMode() {
   body.classList.toggle("dark-mode");
 }
 
-function renderStartScreen() {
-  console.log(quizData);
+// Render Question
+function renderQuestion(topic) {
+
 }
 
 // Function for next question
@@ -236,16 +236,16 @@ function startQuiz(e) {
 // EventListeners
 toggleSwitch.addEventListener("click", darkMode);
 
-// optionsContainer.addEventListener("click", (e) => {
-//   startQuiz(e);
-// })
+optionsContainer.addEventListener("click", (e) => {
+  startQuiz(e);
+})
 
 
 // Function to wait for data & start quiz
 async function init() {
   await getData();
-
-  await renderStartScreen();
 }
 
 init();
+
+// Eerst startQuiz om de elementen te creeeren en daarna een renderQuestion maken voor de overige vragen via de submit button
