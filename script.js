@@ -29,32 +29,33 @@ function darkMode() {
   body.classList.toggle("dark-mode");
 }
 
-// Function for next question
-function nextQuestion() {
-  state.currentQuestionIndex++;
-  // Update question container
-  questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
-  question.textContent = quiz.questions[state.currentQuestionIndex].question;
-  // Update progressbar
-  progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
-  // Update answer container
-  // Remove previous styles
-  const options =  document.querySelectorAll(".option");
-  options.forEach((option) => {
-    option.classList.remove("option-disabled", "selected", "correct", "false");
-    const icon = option.querySelector("img");
-    icon.classList.add("hidden");
-  })
-  answerOptions = quiz.questions[state.currentQuestionIndex].options;
-  const answerTexts = document.querySelectorAll(".answer");
-  answerOptions.forEach((answerOption, index) => {
-    answerTexts[index].textContent = answerOption;
-  })
-  submitButton.textContent = "Submit answer";
-
-  
-
+function renderStartScreen() {
+  console.log(quizData);
 }
+
+// Function for next question
+// function nextQuestion() {
+//   state.currentQuestionIndex++;
+//   // Update question container
+//   questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
+//   question.textContent = quiz.questions[state.currentQuestionIndex].question;
+//   // Update progressbar
+//   progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
+//   // Update answer container
+//   // Remove previous styles
+//   const options =  document.querySelectorAll(".option");
+//   options.forEach((option) => {
+//     option.classList.remove("option-disabled", "selected", "correct", "false");
+//     const icon = option.querySelector("img");
+//     icon.classList.add("hidden");
+//   })
+//   answerOptions = quiz.questions[state.currentQuestionIndex].options;
+//   const answerTexts = document.querySelectorAll(".answer");
+//   answerOptions.forEach((answerOption, index) => {
+//     answerTexts[index].textContent = answerOption;
+//   })
+//   submitButton.textContent = "Submit answer";
+// }
 
 // Start Quiz
 function startQuiz(e) {
@@ -82,11 +83,15 @@ function startQuiz(e) {
 
     questionSubtext = document.createElement("p");
     questionSubtext.classList.add("subtext", "text-preset-6-italic");
-    questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
+
+
+    // questionSubtext.textContent = `Question ${state.currentQuestionIndex + 1} of 10`;
 
     question = document.createElement("p");
     question.className = "text-preset-3-medium";
-    question.textContent = quiz.questions[state.currentQuestionIndex].question;
+
+
+    // question.textContent = quiz.questions[state.currentQuestionIndex].question;
 
     const progressBar = document.createElement("div");
     progressBar.className = "progress-bar";
@@ -95,7 +100,8 @@ function startQuiz(e) {
     progressBarInner.className = "progress-inner";
     progressBar.append(progressBarInner);
 
-    progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
+
+    // progressBarInner.style.width = `${(state.currentQuestionIndex + 1)* 10}%`;
     
     questionContainer.append(questionSubtext, question, progressBar);
     textContainer.append(questionContainer);
@@ -105,7 +111,9 @@ function startQuiz(e) {
 
     answersContainer = document.createElement("div");
     answersContainer.className = "answers-container";
-    answerOptions = quiz.questions[state.currentQuestionIndex].options;
+
+
+    // answerOptions = quiz.questions[state.currentQuestionIndex].options;
 
     // Create each answer option
     answerOptions.forEach((answerOption, index) => {
@@ -119,7 +127,10 @@ function startQuiz(e) {
       letter.textContent = letterOptions[index];
       answerText = document.createElement("p");
       answerText.classList.add("answer", "text-preset-4-medium");
-      answerText.textContent = answerOption;
+
+
+      // answerText.textContent = answerOption;
+
       const answerIcon = document.createElement("img");
       answerIcon.classList.add("answer-icon", "hidden");
 
@@ -225,16 +236,16 @@ function startQuiz(e) {
 // EventListeners
 toggleSwitch.addEventListener("click", darkMode);
 
-optionsContainer.addEventListener("click", (e) => {
-  startQuiz(e);
-})
+// optionsContainer.addEventListener("click", (e) => {
+//   startQuiz(e);
+// })
 
 
 // Function to wait for data & start quiz
 async function init() {
   await getData();
+
+  await renderStartScreen();
 }
 
 init();
-
-// Aparte functions maken en eventListeners uit de functies halen
