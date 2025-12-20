@@ -3,10 +3,11 @@ const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const optionsContainer = document.getElementById("options-container");
+const answersContainer = document.querySelector(".answer-container");
 // const options = document.querySelectorAll(".option");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 
-let questionContainer, questionSubtext, question, progressBarInner, answersContainer, answerOptions, answerText, submitButton, selectedOption;
+let questionContainer, questionSubtext, question, progressBarInner, answerOptions, answerText, submitButton, selectedOption;
 let quizData = [];
 let quiz = null;
 
@@ -28,6 +29,22 @@ async function getData() {
 function darkMode() {
   body.classList.toggle("dark-mode");
 }
+
+// Function for checking/submitting answer
+function selectAnswer() {
+  // selectedOption = null;
+      const option = e.target.closest(".answer-option");
+      if(!option) return;
+      
+      document.querySelectorAll(".answer-option").forEach((el) => {
+        el.classList.remove("selected");
+      })
+        
+      errorMsg.classList.add("hidden");
+      option.classList.add("selected");
+      
+      state.selectedOptionIndex = Number(option.dataset.index);
+}  
 
 // Function for next question
 function nextQuestion() {
@@ -51,8 +68,6 @@ function nextQuestion() {
     answerTexts[index].textContent = answerOption;
   })
   submitButton.textContent = "Submit answer";
-
-  
 
 }
 
@@ -151,22 +166,6 @@ function startQuiz(e) {
 
     optionsContainer.append(answersContainer);
 
-    // Submit & check answer
-    selectedOption = null;
-    answersContainer.addEventListener("click", (e) => {
-      const option = e.target.closest(".answer-option");
-      if(!option) return;
-      
-      document.querySelectorAll(".answer-option").forEach((el) => {
-        el.classList.remove("selected");
-      })
-        
-      errorMsg.classList.add("hidden");
-      option.classList.add("selected");
-      
-      selectedOption = option;
-    })
-
     let chosenAnswer = null;
     let correctAnswer = null;
     submitButton.addEventListener("click", () => {
@@ -227,6 +226,10 @@ toggleSwitch.addEventListener("click", darkMode);
 
 optionsContainer.addEventListener("click", (e) => {
   startQuiz(e);
+})
+
+answersContainer.addEventListener("click", (e) => {
+  selectAnswer();
 })
 
 
