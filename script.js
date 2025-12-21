@@ -68,7 +68,7 @@ function showQuestion(e) {
   } 
     
   const selectedOption = Number(state.selectedOptionIndex = option.dataset.index);
-  const currentQ = Number(state.currentQuestionIndex);
+  const currentQuestionIndex = Number(state.currentQuestionIndex);
 
 
   // 2. Header renderen
@@ -93,17 +93,17 @@ function showQuestion(e) {
   // Subtext with question number
   const questionCountEl = document.createElement("p");
   questionCountEl.classList.add("subtext", "text-preset-6-italic");
-  questionCountEl.textContent = `Question ${(currentQ + 1)} of ${(quizData[selectedOption].questions.length)}`;
+  questionCountEl.textContent = `Question ${(currentQuestionIndex + 1)} of ${(quizData[selectedOption].questions.length)}`;
   // Question
   const questionEL = document.createElement("p");
   questionEL.className = "text-preset-3-medium";
-  questionEL.textContent = quizData[selectedOption].questions[currentQ].question;
+  questionEL.textContent = quizData[selectedOption].questions[currentQuestionIndex].question;
   // Progressbar
   const progressBar = document.createElement("div");
   progressBar.className = "progress-bar";
   const progressBarInner= document.createElement("div");
   progressBarInner.className = "progress-inner";
-  progressBarInner.style.width = `${((currentQ + 1) / (quizData[selectedOption].questions.length)) * 100}%`;
+  progressBarInner.style.width = `${((currentQuestionIndex + 1) / (quizData[selectedOption].questions.length)) * 100}%`;
 
   // Append all elements to text container
   progressBar.append(progressBarInner);
@@ -119,7 +119,7 @@ function showQuestion(e) {
   const answersContainer = document.createElement("div");
   answersContainer.className = "answers-container";
   // Create options with answers
-  const answerOptions = quizData[selectedOption].questions[currentQ].options;
+  const answerOptions = quizData[selectedOption].questions[currentQuestionIndex].options;
   answerOptions.forEach((answer, index) => {
     const option = document.createElement("div");
     option.classList.add("option", "answer-option");
