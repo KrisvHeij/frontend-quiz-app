@@ -46,44 +46,34 @@ function renderStartScreen(data) {
     option.append(div);
     optionsContainer.append(option);
   })
-
-  console.log(quizData);
 }
 
-// Next question
-// function nextQuestion(e) {
-//   // Empty options
-//   options.replaceChildren();
+// Update state
+function handleSelect(e) {
+  state.selectedOptionIndex = e.target.closest(".option").dataset.index;
 
+  startQuiz(quizData[state.selectedOptionIndex]);
+  console.log(quizData[state.selectedOptionIndex]);
+}
 
-// }
-
-// Show first Question
-function showQuestion(e) {
-  // 1. Bepalen welk quiz
-  const option = e.target.closest(".option");
-
-  if (!option) {
-    return
-  } 
-    
-  const selectedOption = Number(state.selectedOptionIndex = option.dataset.index);
-  const currentQuestionIndex = Number(state.currentQuestionIndex);
-
-
-  // 2. Header renderen
-  // Show quiz topic in header
+// Render Header icon & quiz
+function renderHeader() {
   const subjectImg = document.createElement("img");
-  subjectImg.classList.add("option-icon", `option-icon-${quizData[selectedOption].title.toLowerCase()}`);
-  subjectImg.src = quizData[selectedOption].icon;
+  subjectImg.classList.add("option-icon", `option-icon-${quizData[state.selectedOptionIndex].title.toLowerCase()}`);
+  subjectImg.src = quizData[state.selectedOptionIndex].icon;
   const subjectTitle = document.createElement("p");
   subjectTitle.className = "text-preset-4-medium";
-  subjectTitle.textContent = quizData[selectedOption].title;
+  subjectTitle.textContent = quizData[state.selectedOptionIndex].title;
   // Append all elements to header
   headerQuizSubject.append(subjectImg, subjectTitle);
+}
+
+// Show first Question
+function startQuiz(quiz) {
+
+  // Opsplitsen in (question + answers) function 
 
 
-  // 3. Vraag renderen
   // Question container
   // Empty text container
   textContainer.replaceChildren();
@@ -93,17 +83,17 @@ function showQuestion(e) {
   // Subtext with question number
   const questionCountEl = document.createElement("p");
   questionCountEl.classList.add("subtext", "text-preset-6-italic");
-  questionCountEl.textContent = `Question ${(currentQuestionIndex + 1)} of ${(quizData[selectedOption].questions.length)}`;
+  questionCountEl.textContent = `Question ${(state.currentQuestionIndex + 1)} of ${(quiz.questions.length)}`;
   // Question
   const questionEL = document.createElement("p");
   questionEL.className = "text-preset-3-medium";
-  questionEL.textContent = quizData[selectedOption].questions[currentQuestionIndex].question;
+  questionEL.textContent = quiz.questions[state.currentQuestionIndex].question;
   // Progressbar
   const progressBar = document.createElement("div");
   progressBar.className = "progress-bar";
   const progressBarInner= document.createElement("div");
   progressBarInner.className = "progress-inner";
-  progressBarInner.style.width = `${((currentQuestionIndex + 1) / (quizData[selectedOption].questions.length)) * 100}%`;
+  progressBarInner.style.width = `${((state.currentQuestionIndex + 1) / (quiz.questions.length)) * 100}%`;
 
   // Append all elements to text container
   progressBar.append(progressBarInner);
@@ -119,7 +109,7 @@ function showQuestion(e) {
   const answersContainer = document.createElement("div");
   answersContainer.className = "answers-container";
   // Create options with answers
-  const answerOptions = quizData[selectedOption].questions[currentQuestionIndex].options;
+  const answerOptions = quiz.questions[state.currentQuestionIndex].options;
   answerOptions.forEach((answer, index) => {
     const option = document.createElement("div");
     option.classList.add("option", "answer-option");
@@ -163,6 +153,7 @@ async function init() {
   quizData = await getData();
   
   renderStartScreen(quizData);
+  console.log(quizData);
 }
 
 init();
@@ -171,5 +162,5 @@ init();
 toggleSwitch.addEventListener("click", darkMode);
 
 optionsContainer.addEventListener("click", (e) => {
-  showQuestion(e);
+  handleSelect(e);
 })
