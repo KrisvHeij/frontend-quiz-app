@@ -6,9 +6,8 @@ const options = document.getElementById("options");
 const optionsContainer = document.querySelector(".options-container");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 const answersContainer = document.querySelector(".answers-container");
-// let questionContainer, questionSubtext, question, progressBarInner, answerOptions, answerText, submitButton, selectedOption;
+
 let quizData = [];
-let quiz = null;
 
 const state = {
   currentQuestionIndex : 0,
