@@ -2,6 +2,7 @@ const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
 const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
+const options = document.getElementById("options");
 const optionsContainer = document.querySelector(".options-container");
 const answersContainer = document.querySelector(".answers-container");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
@@ -30,7 +31,10 @@ function darkMode() {
 }
 
 // Next question
-function nextQuestion() {
+function nextQuestion(e) {
+  // Empty options
+  options.replaceChildren();
+
 
 }
 
@@ -42,7 +46,18 @@ function showQuestion(e) {
     return
   } 
     
-  const q = Number(state.selectedOptionIndex = option.dataset.index);
+  const currentIndex = Number(state.selectedOptionIndex = option.dataset.index);
+  const currentQ = Number(state.currentQuestionIndex);
+
+  // Show quiz topic in header
+  const subjectImg = document.createElement("img");
+  subjectImg.classList.add("option-icon", `option-icon-${quizData[currentIndex].title.toLowerCase()}`);
+  subjectImg.src = quizData[currentIndex].icon;
+  const subjectTitle = document.createElement("p");
+  subjectTitle.className = "text-preset-4-medium";
+  subjectTitle.textContent = quizData[currentIndex].title;
+  // Append all elements to header
+  headerQuizSubject.append(subjectImg, subjectTitle);
 
   // Question container
   // Empty text container
@@ -53,30 +68,49 @@ function showQuestion(e) {
   // Subtext with question number
   const questionCountEl = document.createElement("p");
   questionCountEl.classList.add("subtext", "text-preset-6-italic");
-  questionCountEl.textContent = `Question ${(q + 1)} of ${(quizData[q].questions.length)}`;
+  questionCountEl.textContent = `Question ${(currentQ + 1)} of ${(quizData[currentIndex].questions.length)}`;
   // Question
   const questionEL = document.createElement("p");
   questionEL.className = "text-preset-3-medium";
-  questionEL.textContent = quizData[q].questions[q].question;
+  questionEL.textContent = quizData[currentIndex].questions[currentIndex].question;
   // Progressbar
   const progressBar = document.createElement("div");
   progressBar.className = "progress-bar";
   const progressBarInner= document.createElement("div");
   progressBarInner.className = "progress-inner";
-  progressBarInner.style.width = `${(q + 1) * (quizData[q].questions.length)}%`;
+  progressBarInner.style.width = `${(currentQ + 1) * (quizData[currentIndex].questions.length)}%`;
 
   // Append all elements to text container
   progressBar.append(progressBarInner);
   questionContainer.append(questionCountEl, questionEL, progressBar);
   textContainer.append(questionContainer);
 
-  // Show answer in options container
-  nextQuestion();  
+  // Answer container
+  // Show answers in options container
+  options.replaceChildren();
+  
+  // Create options with answers
+  quizData.forEach((quiz, index) => {
+    const option = document.createElement("div");
+    option.classList.add("option", "answer-option");
+    const div = document.createElement("div");
+    const letter = document.createElement("p");
+    letter.classList.add("option-icon", "option-letter", "text-preset-4-medium");
+    letter.textContent = String.fromCharCode(65 + index);
+    const p = document.createElement("p");
+    p.classList.add("answer", "text-preset-4-medium");
 
+    // Verder gaan met answer text
+    p.textContent = 
+    const img = document.createElement("img");
+    img.classList.add("answer-icon", "hidden");
 
-
-
-  console.log(q);
+    // Append elements to answer container
+    div.append(letter, p, img);
+    option.append(div);
+    answersContainer.append(option);
+    options.append(answersContainer);
+  })
   
 }
 
