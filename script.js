@@ -101,7 +101,7 @@ function showQuestion(e) {
     p.classList.add("answer", "text-preset-4-medium");
 
     // Verder gaan met answer text
-    p.textContent = 
+    // p.textContent = 
     const img = document.createElement("img");
     img.classList.add("answer-icon", "hidden");
 
