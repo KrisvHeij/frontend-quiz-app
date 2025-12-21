@@ -51,16 +51,15 @@ function renderStartScreen(data) {
 }
 
 // Next question
-function nextQuestion(e) {
-  // Empty options
-  options.replaceChildren();
+// function nextQuestion(e) {
+//   // Empty options
+//   options.replaceChildren();
 
 
-}
+// }
 
 // Show first Question
 function showQuestion(e) {
-
   // 1. Bepalen welk quiz
   const option = e.target.closest(".option");
 
