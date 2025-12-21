@@ -572,6 +572,14 @@ body.dark-mode {
   background-color: var(--c-blue-900);
   background-image: url("./assets/images/pattern-background-mobile-dark.svg");
 
+  @media (min-width: 48rem) {
+    background-image: url("./assets/images/pattern-background-tablet-dark.svg");
+  }
+
+  @media (min-width: 62rem) {
+    background-image: url("./assets/images/pattern-background-desktop-dark.svg");
+  }
+
   /* Question subject */
   .header-subject {
     color:var(--c-white);
