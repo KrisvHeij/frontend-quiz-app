@@ -90,7 +90,8 @@ function showQuestion(e) {
   options.replaceChildren();
   
   // Create options with answers
-  quizData.forEach((quiz, index) => {
+  const answerOptions = quizData[currentIndex].questions[currentIndex].options;
+  answerOptions.forEach((answer, index) => {
     const option = document.createElement("div");
     option.classList.add("option", "answer-option");
     const div = document.createElement("div");
@@ -99,9 +100,7 @@ function showQuestion(e) {
     letter.textContent = String.fromCharCode(65 + index);
     const p = document.createElement("p");
     p.classList.add("answer", "text-preset-4-medium");
-
-    // Verder gaan met answer text
-    // p.textContent = 
+    p.textContent = answer;
     const img = document.createElement("img");
     img.classList.add("answer-icon", "hidden");
 
@@ -111,10 +110,7 @@ function showQuestion(e) {
     answersContainer.append(option);
     options.append(answersContainer);
   })
-  
 }
-
-
 
 // Function to wait for data & start quiz
 async function renderStartScreen() {
