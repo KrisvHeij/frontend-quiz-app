@@ -1,6 +1,6 @@
 const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
-const welcomeText = document.getElementById("welcome-text");
+// const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const options = document.getElementById("options");
 const optionsContainer = document.querySelector(".options-container");
@@ -10,7 +10,8 @@ const answersContainer = document.querySelector(".answers-container");
 let quizData = [];
 
 const state = {
-  currentQuestionIndex : 0,
+  selectedQuizIndex: null,
+  currentQuestionIndex: 0,
   selectedOptionIndex: null,
   score: 0
 }
@@ -49,31 +50,33 @@ function renderStartScreen(data) {
 }
 
 // Update state
-function handleSelect(e) {
-  state.selectedOptionIndex = e.target.closest(".option").dataset.index;
+function handleQuizSelect(e) {
+  const closestQuizOption = e.target.closest(".option");
 
-  startQuiz(quizData[state.selectedOptionIndex]);
-  console.log(quizData[state.selectedOptionIndex]);
+  if (closestQuizOption === null) {
+    return;
+  }
+  
+  state.selectedQuizIndex = e.target.closest(".option").dataset.index;
+
+  startQuiz(quizData[state.selectedQuizIndex]);
+  console.log(quizData[state.selectedQuizIndex]);
 }
 
 // Render Header icon & quiz
-function renderHeader() {
+function renderHeader(quiz) {
   const subjectImg = document.createElement("img");
-  subjectImg.classList.add("option-icon", `option-icon-${quizData[state.selectedOptionIndex].title.toLowerCase()}`);
-  subjectImg.src = quizData[state.selectedOptionIndex].icon;
+  subjectImg.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
+  subjectImg.src = quiz.icon;
   const subjectTitle = document.createElement("p");
   subjectTitle.className = "text-preset-4-medium";
-  subjectTitle.textContent = quizData[state.selectedOptionIndex].title;
+  subjectTitle.textContent = quiz.title;
   // Append all elements to header
   headerQuizSubject.append(subjectImg, subjectTitle);
 }
 
-// Show first Question
-function startQuiz(quiz) {
-
-  // Opsplitsen in (question + answers) function 
-
-
+// Render question & answers options
+function renderQuestion(quiz) {
   // Question container
   // Empty text container
   textContainer.replaceChildren();
@@ -100,19 +103,18 @@ function startQuiz(quiz) {
   questionContainer.append(questionCountEl, questionEL, progressBar);
   textContainer.append(questionContainer);
 
-
-  // 4. Antwoorden renderen
   // Answer container
   // Empty options container
   options.replaceChildren();
   
-  const answersContainer = document.createElement("div");
-  answersContainer.className = "answers-container";
+  // const answersContainer = document.createElement("div");
+  // answersContainer.className = "answers-container";
   // Create options with answers
   const answerOptions = quiz.questions[state.currentQuestionIndex].options;
   answerOptions.forEach((answer, index) => {
     const option = document.createElement("div");
     option.classList.add("option", "answer-option");
+    option.dataset.index = index;
     const div = document.createElement("div");
     const letter = document.createElement("p");
     letter.classList.add("option-icon", "option-letter", "text-preset-4-medium");
@@ -142,10 +144,52 @@ function startQuiz(quiz) {
   errorMsg.classList.add("error-msg", "hidden");
   const errorImg = document.createElement("img");
   errorMsg.src = "./assets/images/icon-error.svg";
+  errorMsg.append(errorImg);
 
   // Append submit button & error message to answers container
   answersContainer.append(submitBtn, errorMsg);
   options.append(answersContainer);
+}
+
+// Handle answer selection
+function handleAnswerSelect(e) {
+  const closestAnswerOption = e.target.closest(".answer-option");
+
+  if (closestAnswerOption === null) {
+    return;
+  }
+
+  state.selectedOptionIndex = e.target.closest(".answer-option").dataset.
+  index;
+
+  renderSelectedOption();
+}
+
+// Show border on selected answer option
+function renderSelectedOption() {
+  const options = document.querySelectorAll(".answer-option");
+
+  options.forEach((option) => {
+    option.classList.remove("selected");
+  })
+  
+  options[state.selectedOptionIndex].classList.add("selected");
+
+  submitAnswer(quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].options[state.selectedOptionIndex]);
+}
+
+// Submit answer
+function submitAnswer(answer) {
+  console.log(answer);
+}
+
+// Show first Question
+function startQuiz(quiz) {
+  // Render header
+  renderHeader(quiz);
+
+  // Render question & answer options
+  renderQuestion(quiz);
 }
 
 // Function to wait for data & start quiz
@@ -161,6 +205,12 @@ init();
 // EventListeners
 toggleSwitch.addEventListener("click", darkMode);
 
+// Select quiz
 optionsContainer.addEventListener("click", (e) => {
-  handleSelect(e);
+  handleQuizSelect(e);
+})
+
+// Select answer
+answersContainer.addEventListener("click", (e) => {
+  handleAnswerSelect(e);
 })
