@@ -200,8 +200,6 @@ async function init() {
   console.log(quizData);
 }
 
-init();
-
 // EventListeners
 toggleSwitch.addEventListener("click", darkMode);
 
@@ -214,3 +212,6 @@ optionsContainer.addEventListener("click", (e) => {
 answersContainer.addEventListener("click", (e) => {
   handleAnswerSelect(e);
 })
+
+// Start app
+init();
