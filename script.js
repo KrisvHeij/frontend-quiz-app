@@ -180,7 +180,20 @@ function renderSelectedOption() {
 
 // Submit answer
 function submitAnswer(answer) {
-  console.log(answer);
+  const correctAnswer = quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].answer;
+  const options = document.querySelectorAll(".option");
+
+  options.forEach((option) => {
+    option.classList.add("option-disabled");
+  })
+
+  // Verder gaan met aanpassen van UI options, correct en false. submitAnswer toepassen in eventlistener???
+
+  if (answer === correctAnswer) {
+    options[state.selectedOptionIndex].classList.add("correct");
+  } else {
+    console.log("Noooooo");
+  }
 }
 
 // Show first Question
