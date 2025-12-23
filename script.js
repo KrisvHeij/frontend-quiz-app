@@ -188,11 +188,15 @@ function submitAnswer(answer) {
   })
 
   // Verder gaan met aanpassen van UI options, correct en false. submitAnswer toepassen in eventlistener???
+  // Goede antwoord zoeken en correct-icon tonen
 
   if (answer === correctAnswer) {
     options[state.selectedOptionIndex].classList.add("correct");
+    const icon = options[state.selectedOptionIndex].querySelector("img");
+    icon.src = "./assets/images/icon-correct.svg";
+    icon.classList.remove("hidden");
   } else {
-    console.log("Noooooo");
+    options[state.selectedOptionIndex].classList.add("false");
   }
 }
 
