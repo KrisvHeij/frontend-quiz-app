@@ -106,6 +106,7 @@ function renderQuestion(quiz) {
   // Answer container
   // Empty options container
   options.replaceChildren();
+  answersContainer.replaceChildren();
   
   // const answersContainer = document.createElement("div");
   // answersContainer.className = "answers-container";
@@ -204,13 +205,15 @@ function submitAnswer(answer) {
       option.classList.add("option-disabled");
     })
 
-    // Verder gaan met aanpassen van UI options, correct en false. submitAnswer toepassen in eventlistener???
-    // Goede antwoord zoeken en correct-icon tonen
+    // Find correct answer and show icon in option
     const icon = options[state.selectedOptionIndex].querySelector("img");
     if (answer === correctAnswer) {
       options[state.selectedOptionIndex].classList.add("correct");
       icon.src = "./assets/images/icon-correct.svg";
       icon.classList.remove("hidden");
+
+      // Update score
+      state.score ++;
     } else {
       options[state.selectedOptionIndex].classList.add("false");
       icon.src = "./assets/images/icon-incorrect.svg";
@@ -228,7 +231,18 @@ function submitAnswer(answer) {
     }
   }
 
-  
+  // Next question
+  document.querySelector("#submit-btn").textContent = "Next question";
+}
+
+function handleNextQuestion() {
+  state.currentQuestionIndex++;
+  state.selectedOptionIndex = null;
+  console.log(state);
+
+  if (state.currentQuestionIndex <= quizData[state.selectedQuizIndex].questions.length) {
+    renderQuestion(quizData[state.selectedQuizIndex]);
+  }
 }
 
 // Show first Question
@@ -262,8 +276,13 @@ answersContainer.addEventListener("click", (e) => {
     handleAnswerSelect(e);
   }
   
-  if (e.target.closest("#submit-btn")) {
-    submitAnswer(quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].options[state.selectedOptionIndex]);
+  const submitBtn = document.getElementById("submit-btn");
+  if (e.target === submitBtn) {
+    if (submitBtn.textContent === "Submit answer") {
+      submitAnswer(quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].options[state.selectedOptionIndex]);
+    } else {
+      handleNextQuestion();
+    }
   }
 })
 
