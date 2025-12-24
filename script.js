@@ -288,3 +288,5 @@ answersContainer.addEventListener("click", (e) => {
 
 // Start app
 init();
+
+// Verder gaan met next question & einde quiz?? wat gebeurt er na vraag 10?
