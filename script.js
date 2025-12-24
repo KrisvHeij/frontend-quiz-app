@@ -143,12 +143,24 @@ function renderQuestion(quiz) {
   errorMsg.id = "error-msg";
   errorMsg.classList.add("error-msg", "hidden");
   const errorImg = document.createElement("img");
-  errorMsg.src = "./assets/images/icon-error.svg";
-  errorMsg.append(errorImg);
+  errorImg.src = "./assets/images/icon-error.svg";
+  const errorText = document.createElement("p");
+  errorText.textContent = "Please select an answer";
+  errorMsg.append(errorImg, errorText);
 
   // Append submit button & error message to answers container
   answersContainer.append(submitBtn, errorMsg);
   options.append(answersContainer);
+}
+
+function showErrorMsg() {
+  const errorMsg = document.getElementById("error-msg");
+  errorMsg.classList.remove("hidden");
+}
+
+function removeErrorMsg() {
+  const errorMsg = document.getElementById("error-msg");
+  errorMsg.classList.add("hidden");
 }
 
 // Handle answer selection
@@ -175,29 +187,48 @@ function renderSelectedOption() {
   
   options[state.selectedOptionIndex].classList.add("selected");
 
-  submitAnswer(quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].options[state.selectedOptionIndex]);
+  removeErrorMsg();
 }
 
 // Submit answer
 function submitAnswer(answer) {
-  const correctAnswer = quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].answer;
-  const options = document.querySelectorAll(".option");
-
-  options.forEach((option) => {
-    option.classList.add("option-disabled");
-  })
-
-  // Verder gaan met aanpassen van UI options, correct en false. submitAnswer toepassen in eventlistener???
-  // Goede antwoord zoeken en correct-icon tonen
-
-  if (answer === correctAnswer) {
-    options[state.selectedOptionIndex].classList.add("correct");
-    const icon = options[state.selectedOptionIndex].querySelector("img");
-    icon.src = "./assets/images/icon-correct.svg";
-    icon.classList.remove("hidden");
+  if (state.selectedOptionIndex === null) {
+    showErrorMsg();
+    return;
   } else {
-    options[state.selectedOptionIndex].classList.add("false");
+    
+    const correctAnswer = quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].answer;
+    const options = document.querySelectorAll(".option");
+
+    options.forEach((option) => {
+      option.classList.add("option-disabled");
+    })
+
+    // Verder gaan met aanpassen van UI options, correct en false. submitAnswer toepassen in eventlistener???
+    // Goede antwoord zoeken en correct-icon tonen
+    const icon = options[state.selectedOptionIndex].querySelector("img");
+    if (answer === correctAnswer) {
+      options[state.selectedOptionIndex].classList.add("correct");
+      icon.src = "./assets/images/icon-correct.svg";
+      icon.classList.remove("hidden");
+    } else {
+      options[state.selectedOptionIndex].classList.add("false");
+      icon.src = "./assets/images/icon-incorrect.svg";
+      icon.classList.remove("hidden");
+      
+      options.forEach((option, index) => {
+        const icon = option.querySelector("img");
+        const optionText = option.querySelector(".answer").textContent;
+
+        if (optionText === correctAnswer) {
+          icon.src = "./assets/images/icon-correct.svg";
+          icon.classList.remove("hidden");
+        }
+      })
+    }
   }
+
+  
 }
 
 // Show first Question
@@ -227,7 +258,13 @@ optionsContainer.addEventListener("click", (e) => {
 
 // Select answer
 answersContainer.addEventListener("click", (e) => {
-  handleAnswerSelect(e);
+  if (e.target.closest(".answer-option")) {
+    handleAnswerSelect(e);
+  }
+  
+  if (e.target.closest("#submit-btn")) {
+    submitAnswer(quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].options[state.selectedOptionIndex]);
+  }
 })
 
 // Start app
