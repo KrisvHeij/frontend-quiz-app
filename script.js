@@ -1,6 +1,5 @@
 const body = document.querySelector("body");
 const toggleSwitch = document.getElementById("toggle-switch");
-// const welcomeText = document.getElementById("welcome-text");
 const textContainer = document.getElementById("text-container");
 const options = document.getElementById("options");
 const optionsContainer = document.querySelector(".options-container");
@@ -11,7 +10,7 @@ let quizData = [];
 
 const state = {
   selectedQuizIndex: null,
-  currentQuestionIndex: 0,
+  currentQuestionIndex: 8,
   selectedOptionIndex: null,
   score: 0
 }
@@ -52,7 +51,6 @@ function renderStartScreen(data) {
 // Update state
 function handleQuizSelect(e) {
   const closestQuizOption = e.target.closest(".option");
-
   if (closestQuizOption === null) {
     return;
   }
@@ -108,8 +106,6 @@ function renderQuestion(quiz) {
   options.replaceChildren();
   answersContainer.replaceChildren();
   
-  // const answersContainer = document.createElement("div");
-  // answersContainer.className = "answers-container";
   // Create options with answers
   const answerOptions = quiz.questions[state.currentQuestionIndex].options;
   answerOptions.forEach((answer, index) => {
@@ -167,7 +163,6 @@ function removeErrorMsg() {
 // Handle answer selection
 function handleAnswerSelect(e) {
   const closestAnswerOption = e.target.closest(".answer-option");
-
   if (closestAnswerOption === null) {
     return;
   }
@@ -181,7 +176,6 @@ function handleAnswerSelect(e) {
 // Show border on selected answer option
 function renderSelectedOption() {
   const options = document.querySelectorAll(".answer-option");
-
   options.forEach((option) => {
     option.classList.remove("selected");
   })
@@ -189,7 +183,6 @@ function renderSelectedOption() {
   options[state.selectedOptionIndex].classList.add("selected");
 
   removeErrorMsg();
-  // console.log(state);
 }
 
 // Submit answer
@@ -201,7 +194,6 @@ function submitAnswer(answer) {
     
     const correctAnswer = quizData[state.selectedQuizIndex].questions[state.currentQuestionIndex].answer;
     const options = document.querySelectorAll(".option");
-
     options.forEach((option) => {
       option.classList.add("option-disabled");
     })
@@ -232,8 +224,12 @@ function submitAnswer(answer) {
     }
   }
 
-  // Next question
-  document.querySelector("#submit-btn").textContent = "Next question";
+  // Check for last question for textcontent button
+  if (state.currentQuestionIndex === (quizData[state.selectedQuizIndex].questions.length - 1)) {
+    document.querySelector("#submit-btn").textContent = "Show score";
+  } else {
+    document.querySelector("#submit-btn").textContent = "Next question";
+  }
 }
 
 function handleNextQuestion() {
@@ -245,10 +241,7 @@ function handleNextQuestion() {
   
     renderQuestion(quizData[state.selectedQuizIndex]);
   }
-  
-  
   console.log(state);
-  
 }
 
 // Render score
@@ -263,7 +256,6 @@ function renderScore() {
 function startQuiz(quiz) {
   // Render header
   renderHeader(quiz);
-
   // Render question & answer options
   renderQuestion(quiz);
 }
