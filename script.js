@@ -265,6 +265,33 @@ function renderScore() {
   textContainer.append(resultHeaderEl);
   
   // Create elements for options container
+  const resultContainer = document.createElement("div");
+  resultContainer.className = "result-container";
+  const div = document.createElement("div");
+  const innerDiv = document.createElement("div");
+  innerDiv.classsName = "header-subject";
+  const headerImg = document.createElement("img");
+  headerImg.classList.add("option-icon", `option-icon-${quizData[state.selectedQuizIndex].title.toLowerCase()}`);
+  headerImg.src = quizData[state.selectedQuizIndex].icon;
+  const headerText = document.createElement("p");
+  headerText.classname = "text-preset-1-medium";
+  headerText.textContent = quizData[state.selectedQuizIndex].title;
+  const score = document.createElement("p");
+  score.className = "text-preset-1-medium";
+  score.textContent = state.score;
+  const scoreSubtext = document.createElement("p");
+  scoreSubtext.classList.add("subtext", "text-preset-5-regular");
+  scoreSubtext.textContent = `out of ${quizData[state.selectedQuizIndex].questions.length}`;
+  const playBtn = document.createElement("button");
+  playBtn.id = "play-btn";
+  playBtn.classList.add("btn", "text-preset-4-medium");
+  playBtn.textContent = "Play again";
+  // Append element to container
+  innerDiv.append(headerImg, headerText);
+  div.append(innerDiv, score, scoreSubtext);
+  resultContainer.append(div, playBtn);
+  options.append(resultContainer);
+
 }
 
 // Show first Question
@@ -310,4 +337,4 @@ answersContainer.addEventListener("click", (e) => {
 // Start app
 init();
 
-// Verder gaan met next question & einde quiz?? wat gebeurt er na vraag 10?
+// Verder gaan met RenderScore + css voor result header
