@@ -246,10 +246,25 @@ function handleNextQuestion() {
 
 // Render score
 function renderScore() {
+  // Empty textcontainer & options
+  textContainer.replaceChildren();
+  options.replaceChildren();
+
+  // Create elements for text container
+  const resultHeaderEl = document.createElement("div");
+  resultHeaderEl.className = "result-header";
+  const header = document.createElement("h1");
+  header.className = "text-preset-2-light";
+  header.textContent = "Quiz completed";
+  const span = document.createElement("span");
+  span.className = "text-preset-2-medium";
+  span.textContent = "You scored...";
+  // Append elements to text container
+  header.append(span);
+  resultHeaderEl.append(header);
+  textContainer.append(resultHeaderEl);
   
-    console.log("End");
-  
-  
+  // Create elements for options container
 }
 
 // Show first Question
