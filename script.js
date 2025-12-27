@@ -189,6 +189,7 @@ function renderSelectedOption() {
   options[state.selectedOptionIndex].classList.add("selected");
 
   removeErrorMsg();
+  // console.log(state);
 }
 
 // Submit answer
@@ -236,13 +237,26 @@ function submitAnswer(answer) {
 }
 
 function handleNextQuestion() {
-  state.currentQuestionIndex++;
-  state.selectedOptionIndex = null;
-  console.log(state);
-
-  if (state.currentQuestionIndex <= quizData[state.selectedQuizIndex].questions.length) {
+  if (state.currentQuestionIndex === (quizData[state.selectedQuizIndex].questions.length - 1)) {
+    renderScore();
+  } else {
+    state.currentQuestionIndex++;
+    state.selectedOptionIndex = null;
+  
     renderQuestion(quizData[state.selectedQuizIndex]);
   }
+  
+  
+  console.log(state);
+  
+}
+
+// Render score
+function renderScore() {
+  
+    console.log("End");
+  
+  
 }
 
 // Show first Question
