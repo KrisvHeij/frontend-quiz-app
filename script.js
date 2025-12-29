@@ -5,6 +5,7 @@ const options = document.getElementById("options");
 const optionsContainer = document.querySelector(".options-container");
 const headerQuizSubject = document.getElementById("header-quiz-subject");
 const answersContainer = document.querySelector(".answers-container");
+const resultContainer = document.querySelector(".result-container");
 
 let quizData = [];
 
@@ -30,6 +31,23 @@ function darkMode() {
 
 // Render start screen / Show quiz options
 function renderStartScreen(data) {
+  // Create welcome text
+  const headerDiv = document.createElement("div");
+  const header = document.createElement("h1");
+  header.className = "text-preset-2-light";
+  header.textContent = "Welcome to the";
+  const headerSpan = document.createElement("span");
+  headerSpan.className = "text-preset-2-medium";
+  headerSpan.textContent = "Frontend Quiz!";
+  const subText = document.createElement("p");
+  subText.classList.add("subtext", "text-preset-6-italic");
+  subText.textContent = "Pick asubject to get started";
+  // Append all element to container
+  header.append(headerSpan);
+  headerDiv.append(header, subText);
+  textContainer.append(headerDiv);
+
+  // Create options for quizzes
   data.forEach((quiz, index) => {
     const option = document.createElement("div");
     option.className = "option";
@@ -45,6 +63,7 @@ function renderStartScreen(data) {
     div.append(img, p);
     option.append(div);
     optionsContainer.append(option);
+    // options.append(optionsContainer);
   })
 }
 
@@ -103,7 +122,7 @@ function renderQuestion(quiz) {
 
   // Answer container
   // Empty options container
-  options.replaceChildren();
+  optionsContainer.replaceChildren();
   answersContainer.replaceChildren();
   
   // Create options with answers
@@ -248,7 +267,7 @@ function handleNextQuestion() {
 function renderScore() {
   // Empty textcontainer & options
   textContainer.replaceChildren();
-  options.replaceChildren();
+  answersContainer.replaceChildren();
 
   // Create elements for text container
   const resultHeaderEl = document.createElement("div");
@@ -265,16 +284,16 @@ function renderScore() {
   textContainer.append(resultHeaderEl);
   
   // Create elements for options container
-  const resultContainer = document.createElement("div");
-  resultContainer.className = "result-container";
+  // const resultContainer = document.createElement("div");
+  // resultContainer.className = "result-container";
   const div = document.createElement("div");
   const innerDiv = document.createElement("div");
-  innerDiv.classsName = "header-subject";
+  innerDiv.className = "header-subject";
   const headerImg = document.createElement("img");
   headerImg.classList.add("option-icon", `option-icon-${quizData[state.selectedQuizIndex].title.toLowerCase()}`);
   headerImg.src = quizData[state.selectedQuizIndex].icon;
   const headerText = document.createElement("p");
-  headerText.classname = "text-preset-1-medium";
+  headerText.className = "text-preset-4-medium";
   headerText.textContent = quizData[state.selectedQuizIndex].title;
   const score = document.createElement("p");
   score.className = "text-preset-1-medium";
@@ -291,7 +310,6 @@ function renderScore() {
   div.append(innerDiv, score, scoreSubtext);
   resultContainer.append(div, playBtn);
   options.append(resultContainer);
-
 }
 
 // Show first Question
@@ -300,6 +318,22 @@ function startQuiz(quiz) {
   renderHeader(quiz);
   // Render question & answer options
   renderQuestion(quiz);
+}
+
+function playAgain(data) {
+  // Clear all containers
+  headerQuizSubject.replaceChildren();
+  textContainer.replaceChildren();
+  resultContainer.replaceChildren();
+  // Reset state
+  state.selectedQuizIndex = null;
+  state.currentQuestionIndex = 0;
+  state.selectedOptionIndex = null;
+  state.score = 0;
+
+  renderStartScreen(data);
+  console.log(data);
+
 }
 
 // Function to wait for data & start quiz
@@ -331,10 +365,17 @@ answersContainer.addEventListener("click", (e) => {
     } else {
       handleNextQuestion();
     }
+  }  
+})
+
+resultContainer.addEventListener("click", (e) => {
+  const playAgainBtn = document.getElementById("play-btn");
+  if (e.target === playAgainBtn) {
+    playAgain(quizData);
   }
 })
 
 // Start app
 init();
 
-// Verder gaan met RenderScore + css voor result header
+// Verder gaan met playAgain()
