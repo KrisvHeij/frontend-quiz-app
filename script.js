@@ -56,6 +56,7 @@ function renderStartScreen(data) {
     const img = document.createElement("img");
     img.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
     img.src = quiz.icon;
+    img.alt = "";
     const p = document.createElement("p");
     p.classList.add("option-text", "text-preset-4-medium");
     p.textContent = `${quiz.title}`;
@@ -84,6 +85,7 @@ function renderHeader(quiz) {
   const subjectImg = document.createElement("img");
   subjectImg.classList.add("option-icon", `option-icon-${quiz.title.toLowerCase()}`);
   subjectImg.src = quiz.icon;
+  subjectImg.alt = "";
   const subjectTitle = document.createElement("p");
   subjectTitle.className = "text-preset-4-medium";
   subjectTitle.textContent = quiz.title;
@@ -288,6 +290,7 @@ function renderScore() {
   const headerImg = document.createElement("img");
   headerImg.classList.add("option-icon", `option-icon-${quizData[state.selectedQuizIndex].title.toLowerCase()}`);
   headerImg.src = quizData[state.selectedQuizIndex].icon;
+  headerImg.alt = "";
   const headerText = document.createElement("p");
   headerText.className = "text-preset-4-medium";
   headerText.textContent = quizData[state.selectedQuizIndex].title;
