@@ -282,8 +282,6 @@ function renderScore() {
   textContainer.append(resultHeaderEl);
   
   // Create elements for options container
-  // const resultContainer = document.createElement("div");
-  // resultContainer.className = "result-container";
   const div = document.createElement("div");
   const innerDiv = document.createElement("div");
   innerDiv.className = "header-subject";
