@@ -41,7 +41,7 @@ function renderStartScreen(data) {
   headerSpan.textContent = "Frontend Quiz!";
   const subText = document.createElement("p");
   subText.classList.add("subtext", "text-preset-6-italic");
-  subText.textContent = "Pick asubject to get started";
+  subText.textContent = "Pick a subject to get started";
   // Append all element to container
   header.append(headerSpan);
   headerDiv.append(header, subText);
