@@ -11,7 +11,7 @@ let quizData = [];
 
 const state = {
   selectedQuizIndex: null,
-  currentQuestionIndex: 8,
+  currentQuestionIndex: 0,
   selectedOptionIndex: null,
   score: 0
 }
