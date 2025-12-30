@@ -77,7 +77,6 @@ function handleQuizSelect(e) {
   state.selectedQuizIndex = e.target.closest(".option").dataset.index;
 
   startQuiz(quizData[state.selectedQuizIndex]);
-  console.log(quizData[state.selectedQuizIndex]);
 }
 
 // Render Header icon & quiz
@@ -260,7 +259,6 @@ function handleNextQuestion() {
   
     renderQuestion(quizData[state.selectedQuizIndex]);
   }
-  console.log(state);
 }
 
 // Render score
@@ -332,8 +330,6 @@ function playAgain(data) {
   state.score = 0;
 
   renderStartScreen(data);
-  console.log(data);
-
 }
 
 // Function to wait for data & start quiz
@@ -341,7 +337,6 @@ async function init() {
   quizData = await getData();
   
   renderStartScreen(quizData);
-  console.log(quizData);
 }
 
 // EventListeners
